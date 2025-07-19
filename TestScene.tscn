@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://15775gee50nb"]
+[gd_scene load_steps=6 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
-[ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
+[ext_resource type="Script" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="Texture2D" uid="uid://bio84xlk35btk" path="res://assets/city.png" id="2_wicfy"]
 [ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="4_go42g"]
 [ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="4_sreuk"]
@@ -123,9 +123,9 @@ offset_right = 27.0
 offset_bottom = -233.0
 button_group = ExtResource("4_sreuk")
 
-[connection signal="pressed" from="ElementButtons/CheckBox Earth" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="ElementButtons/CheckBox Water" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Earth" to="ElementButtons" method="_on_check_box_pressed" binds= [4]]
+[connection signal="pressed" from="ElementButtons/CheckBox Water" to="ElementButtons" method="_on_check_box_pressed" binds= [2]]
 [connection signal="pressed" from="ElementButtons/CheckBox Fire" to="ElementButtons" method="_on_check_box_pressed" binds= [0]]
 [connection signal="pressed" from="ElementButtons/CheckBox Air" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="ElementButtons/CheckBox Plauge" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="ElementButtons/CheckBox Lightning" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Plauge" to="ElementButtons" method="_on_check_box_pressed" binds= [5]]
+[connection signal="pressed" from="ElementButtons/CheckBox Lightning" to="ElementButtons" method="_on_check_box_pressed" binds= [6]]

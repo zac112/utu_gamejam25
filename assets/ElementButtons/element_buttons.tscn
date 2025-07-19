@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://f3mrnpsj47tn"]
+
+[ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="1_putuj"]
+[ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="2_xbnss"]
+
+[node name="ElementButtons" type="Node2D" node_paths=PackedStringArray("checkboxes")]
+script = ExtResource("1_putuj")
+checkboxes = [NodePath("CheckBox Fire"), NodePath("CheckBox Air"), null, null, null, null]
+
+[node name="CheckBox Earth" type="CheckBox" parent="."]
+offset_left = 3.0
+offset_top = -174.0
+offset_right = 27.0
+offset_bottom = -150.0
+button_group = ExtResource("2_xbnss")
+
+[node name="CheckBox Water" type="CheckBox" parent="."]
+offset_left = 4.0
+offset_top = -118.0
+offset_right = 28.0
+offset_bottom = -94.0
+button_group = ExtResource("2_xbnss")
+
+[node name="CheckBox Fire" type="CheckBox" parent="."]
+offset_left = 3.0
+offset_top = -202.0
+offset_right = 27.0
+offset_bottom = -178.0
+button_group = ExtResource("2_xbnss")
+
+[node name="CheckBox Air" type="CheckBox" parent="."]
+offset_left = 4.0
+offset_top = -147.0
+offset_right = 28.0
+offset_bottom = -123.0
+button_group = ExtResource("2_xbnss")
+
+[node name="Fire label" type="Label" parent="."]
+offset_left = 38.0
+offset_top = -204.0
+offset_right = 78.0
+offset_bottom = -181.0
+text = "Fire"
+
+[node name="Air label" type="Label" parent="."]
+offset_left = 38.0
+offset_top = -147.0
+offset_right = 80.0
+offset_bottom = -124.0
+text = "Air"
+
+[node name="Earth label" type="Label" parent="."]
+offset_left = 38.0
+offset_top = -175.0
+offset_right = 80.0
+offset_bottom = -152.0
+text = "Earth"
+
+[node name="Lightning label" type="Label" parent="."]
+offset_left = 35.0
+offset_top = -256.0
+offset_right = 108.0
+offset_bottom = -233.0
+text = "Lightning"
+
+[node name="Water label" type="Label" parent="."]
+offset_left = 37.0
+offset_top = -119.0
+offset_right = 89.0
+offset_bottom = -96.0
+text = "Water"
+
+[node name="Plauge label" type="Label" parent="."]
+offset_left = 36.0
+offset_top = -229.0
+offset_right = 88.0
+offset_bottom = -206.0
+text = "Plauge"
+
+[node name="CheckBox Plauge" type="CheckBox" parent="."]
+offset_left = 3.0
+offset_top = -229.0
+offset_right = 27.0
+offset_bottom = -205.0
+button_group = ExtResource("2_xbnss")
+
+[node name="CheckBox Lightning" type="CheckBox" parent="."]
+offset_left = 3.0
+offset_top = -257.0
+offset_right = 27.0
+offset_bottom = -233.0
+button_group = ExtResource("2_xbnss")
+
+[connection signal="pressed" from="CheckBox Earth" to="." method="_on_check_box_pressed" binds= [4]]
+[connection signal="pressed" from="CheckBox Water" to="." method="_on_check_box_pressed" binds= [2]]
+[connection signal="pressed" from="CheckBox Fire" to="." method="_on_check_box_pressed" binds= [0]]
+[connection signal="pressed" from="CheckBox Air" to="." method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="CheckBox Plauge" to="." method="_on_check_box_pressed" binds= [5]]
+[connection signal="pressed" from="CheckBox Lightning" to="." method="_on_check_box_pressed" binds= [6]]
