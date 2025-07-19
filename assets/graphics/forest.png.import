@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://comuxf6rif6j3"
-path="res://.godot/imported/Fire.png-f84a808fcb1f891286409933f69db5de.ctex"
+uid="uid://fdihu65or0b2"
+path="res://.godot/imported/forest.png-72251beba438a2ee136eb77e86c6e2d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Fire.png"
-dest_files=["res://.godot/imported/Fire.png-f84a808fcb1f891286409933f69db5de.ctex"]
+source_file="res://assets/graphics/forest.png"
+dest_files=["res://.godot/imported/forest.png-72251beba438a2ee136eb77e86c6e2d2.ctex"]
 
 [params]
 

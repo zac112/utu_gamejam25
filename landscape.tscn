@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://das7b8u7m8c6m"]
+[gd_scene load_steps=9 format=3 uid="uid://btt3m5imis58c"]
 
 [ext_resource type="Script" uid="uid://uyyp43ho63do" path="res://landscape.gd" id="1_j1j1h"]
-[ext_resource type="Texture2D" uid="uid://c51d0nqlums3h" path="res://assets/landscape_assests/forest.png" id="2_asa4r"]
 [ext_resource type="Texture2D" uid="uid://cfp8qapil4occ" path="res://assets/landscape_assests/wastes.png" id="2_c14k7"]
 [ext_resource type="Texture2D" uid="uid://b0pmvfbxcckf0" path="res://assets/landscape_assests/island.png" id="3_6vom0"]
 [ext_resource type="Texture2D" uid="uid://bspel1opnu1w" path="res://assets/landscape_assests/planes.png" id="3_tsij1"]
+[ext_resource type="Texture2D" uid="uid://fdihu65or0b2" path="res://assets/graphics/forest.png" id="4_c14k7"]
 [ext_resource type="Texture2D" uid="uid://d1u33bwy83ti5" path="res://assets/landscape_assests/swamp.png" id="4_d76ii"]
 [ext_resource type="Texture2D" uid="uid://36xbwn51w25l" path="res://assets/landscape_assests/mountain.png" id="6_s6x4i"]
 
@@ -13,7 +13,7 @@ size = Vector2(96, 99)
 
 [node name="Landscape" type="Node2D"]
 script = ExtResource("1_j1j1h")
-sprites = Array[Texture2D]([ExtResource("2_c14k7"), ExtResource("3_tsij1"), ExtResource("2_asa4r"), ExtResource("4_d76ii"), ExtResource("6_s6x4i"), ExtResource("3_6vom0")])
+sprites = Array[Texture2D]([ExtResource("2_c14k7"), ExtResource("3_tsij1"), ExtResource("4_c14k7"), ExtResource("4_d76ii"), ExtResource("6_s6x4i"), ExtResource("3_6vom0")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_c14k7")
