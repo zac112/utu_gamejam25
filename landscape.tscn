@@ -13,7 +13,7 @@ size = Vector2(96, 99)
 
 [node name="Landscape" type="Node2D"]
 script = ExtResource("1_j1j1h")
-sprites = Array[Texture2D]([ExtResource("2_c14k7"), ExtResource("3_tsij1"), ExtResource("4_d76ii"), ExtResource("2_asa4r"), ExtResource("6_s6x4i"), ExtResource("3_6vom0")])
+sprites = Array[Texture2D]([ExtResource("2_c14k7"), ExtResource("3_tsij1"), ExtResource("2_asa4r"), ExtResource("4_d76ii"), ExtResource("6_s6x4i"), ExtResource("3_6vom0")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_c14k7")

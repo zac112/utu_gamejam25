@@ -1,16 +1,17 @@
 class_name Landscape extends Node2D
 
+# enum Landscape_type {WASTE = 0, PLANE, FOREST, SWAMP, MOUNTAIN, ISLAND}
 @export var sprites : Array[Texture2D]
 
 var type = GLOBALS.Landscape_type.WASTE
 
 var mouse_inside = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Sprite2D.texture = sprites[type]
 	
 
-func wastes_interaction(impacting):
+func wastes_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting: 
 		GLOBALS.Element_type.WATER:
 			return GLOBALS.Landscape_type.PLANE
@@ -19,7 +20,7 @@ func wastes_interaction(impacting):
 			
 			
 
-func plane_interaction(impacting):
+func plane_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.WATER:
 			return GLOBALS.Landscape_type.FOREST
@@ -28,7 +29,7 @@ func plane_interaction(impacting):
 		_: 
 			return GLOBALS.Landscape_type.PLANE
 			
-func forest_interaction(impacting):
+func forest_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.FIRE: 
 			return GLOBALS.Landscape_type.WASTE
@@ -37,37 +38,38 @@ func forest_interaction(impacting):
 		_: 
 			return GLOBALS.Landscape_type.FOREST
 			
-func swamp_interaction(impacting):
+func swamp_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		_: 
 			return GLOBALS.Landscape_type.SWAMP
 			
-func mountain_interaction(impacting):
+func mountain_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		_: 
 			return GLOBALS.Landscape_type.MOUNTAIN
 			
-func island_interaction(impacting):
+func island_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		_: 
 			return GLOBALS.Landscape_type.ISLAND
 
-func landscape_interaction(impated, impacting):
-	match impacting: 
+func landscape_interaction(impacted, impacting) -> GLOBALS.Landscape_type:
+	match impacted: 
 		GLOBALS.Landscape_type.WASTE: 
-			wastes_interaction(impacting)
+			return wastes_interaction(impacting)
 		GLOBALS.Landscape_type.PLANE:
-			plane_interaction(impacting)
+			return plane_interaction(impacting)
 		GLOBALS.Landscape_type.FOREST:
-			forest_interaction(impacting)
+			return forest_interaction(impacting)
 		GLOBALS.Landscape_type.SWAMP:
-			swamp_interaction(impacting)
+			return swamp_interaction(impacting)
 		GLOBALS.Landscape_type.MOUNTAIN:
-			mountain_interaction(impacting)
+			return mountain_interaction(impacting)
 		GLOBALS.Landscape_type.ISLAND:
-			island_interaction(impacting)
+			return island_interaction(impacting)
 		_:
 			push_error("Invalid impacting element.")
+			return GLOBALS.Landscape_type.WASTE
 
 
 func _input(event):
