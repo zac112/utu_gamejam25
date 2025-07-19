@@ -11,4 +11,5 @@ enum Element_type {
 #	Discoverable
 	PLUAGE,
 	LIGHTNING,
+	RADIATION,
 }

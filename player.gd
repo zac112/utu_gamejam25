@@ -9,3 +9,5 @@ extends Node
 	GLOBALS.Element_type.AIR   : null,
 	GLOBALS.Element_type.FIRE  : null,
 }
+
+@export var time = 0
