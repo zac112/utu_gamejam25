@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://e10rud4vctg3"]
+[gd_scene load_steps=5 format=3 uid="uid://dk5gfxijqpkx6"]
 
 [ext_resource type="Script" uid="uid://dyduxycasxnvh" path="res://city.gd" id="1_o3tkm"]
 [ext_resource type="Texture2D" uid="uid://cjynk07or4d2f" path="res://assets/graphics/city.png" id="2_m7k8b"]
+[ext_resource type="Texture2D" uid="uid://dm88b3nifsild" path="res://assets/graphics/city_destroyed.png" id="3_o3tkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3tkm"]
 size = Vector2(96, 99)
 
 [node name="City" type="Node2D"]
 script = ExtResource("1_o3tkm")
+sprites = Array[Texture2D]([ExtResource("2_m7k8b"), ExtResource("3_o3tkm")])
 
-[node name="Blank" type="Sprite2D" parent="."]
+[node name="CitySprite" type="Sprite2D" parent="."]
 z_index = -1
 texture = ExtResource("2_m7k8b")
 
@@ -18,6 +20,20 @@ texture = ExtResource("2_m7k8b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_o3tkm")
+
+[node name="Integrity" type="ProgressBar" parent="."]
+offset_left = -49.0
+offset_top = -62.0
+offset_right = 48.0
+offset_bottom = -51.0
+show_percentage = false
+
+[node name="Population" type="ProgressBar" parent="."]
+offset_left = -49.0
+offset_top = -74.0
+offset_right = 48.0
+offset_bottom = -63.0
+show_percentage = false
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

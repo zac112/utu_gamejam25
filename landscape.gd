@@ -78,6 +78,7 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			type = landscape_interaction(type, Player.selectedElement)
 			Player.time += 1
+			Player.simulate_cities()
 			
 			
 		

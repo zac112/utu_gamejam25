@@ -1,33 +1,266 @@
 class_name City extends Node2D
 
 
-var integrity = 100
-var resistance = {
-	#	Base ones: tier 0
-	GLOBALS.Element_type.FIRE : 1.0,
-	GLOBALS.Element_type.AIR : 1.0,
-	GLOBALS.Element_type.WATER : 1.0,
-	GLOBALS.Element_type.EARTH : 1.0,
-#	Discoverable
-	GLOBALS.Element_type.PLUAGE : 1.0,
-	GLOBALS.Element_type.LIGHTNING : 1.0,
-	GLOBALS.Element_type.RADIATION: 1.0,
+@export var sprites : Array[Texture2D]
+
+enum CityStatus {
+	NATURAL,
+	FIRES,
+	FLOODED,
+	FOG,
+	UNREST,
+	CARANTINE,
+	IRRADIATED,
+	DESTROYED,
+	DEPOPOLULATED
 }
-var population = 100
+
+func serializeCityStatus(city_status) -> String:
+	match city_status:
+		CityStatus.NATURAL:
+			return "NATURAL"
+		CityStatus.FIRES:
+			return "FIRES"
+		CityStatus.FLOODED:
+			return "FLOODED"
+		CityStatus.UNREST:
+			return "UNREST"
+		CityStatus.CARANTINE:
+			return "CARANTINE"
+		CityStatus.IRRADIATED:
+			return "IRRADIATED"
+		CityStatus.FOG:
+			return "FOG"
+		CityStatus.DESTROYED:
+			return "DESTROYED"
+		CityStatus.DEPOPOLULATED:
+			return "DEPOPOLULATED"
+		_:
+			return "??"
+
+var city_status = CityStatus.NATURAL
+
+var integrity : int = 100
+var population : int = 100
+var just_clicked = false
+
+var carantine_max = 1
+var carantime_step = 0
 
 var mouse_inside = false
 
+func _ready() -> void:
+	$Integrity.value = integrity
+	$Population.value = population
+	$Integrity.visible = false
+	$Population.visible = false
+
+func apply_flat_damage(popul : int, struct : int):
+	population -= popul
+	integrity -= struct
+
+func apply_damage(element_type, pop_mult=1.0, int_mult=1.0) -> void:
+	var d_population = Player.populationDamage[element_type] * Player.effectiveness[element_type]
+	var d_integrity = Player.structuralDamage[element_type] * Player.effectiveness[element_type]
+	
+	population -= (d_population * pop_mult) as int
+	integrity -= (d_integrity * int_mult) as int
+	
+func city_idle_tick():
+	if just_clicked:
+		just_clicked = false
+		return
+		
+	match city_status:
+		CityStatus.NATURAL:
+			pass
+		CityStatus.FOG:
+			if randi() % 2 == 0:
+				city_status = CityStatus.NATURAL
+		CityStatus.FIRES:
+			apply_damage(GLOBALS.Element_type.FIRE, 0.0, 1.0)
+			if randi() % 3 == 0:
+				city_status = CityStatus.NATURAL
+		CityStatus.FLOODED:
+			apply_damage(GLOBALS.Element_type.WATER, 0.3, 0.0)
+			if randi() % 4 == 0:
+				city_status = CityStatus.NATURAL
+		CityStatus.UNREST:
+			apply_flat_damage(randi()%10, randi()%10)
+			var i = randi() % 5
+			if i == 0:
+				city_status = CityStatus.NATURAL
+			elif i == 1:
+				city_status = CityStatus.FIRES
+			else:
+				pass
+		CityStatus.CARANTINE:
+			apply_flat_damage(randi()%2, 0)
+			if carantime_step == carantine_max:
+				carantine_max *= 2
+				carantime_step = 0
+				city_status = CityStatus.NATURAL
+			else:
+				carantime_step += 1
+		CityStatus.IRRADIATED:
+			apply_damage(GLOBALS.Element_type.RADIATION)
+			var i = randi() % 10
+			if i == 0:
+				city_status = CityStatus.NATURAL
+			elif i == 1:
+				city_status = CityStatus.UNREST
+			else:
+				pass
+		
+
+func impactNatural(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.STEAM:
+			return CityStatus.FOG
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+func impactFires(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
+			return CityStatus.FOG
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+func impactFog(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.LIGHTNING:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+func impactFlooded(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		GLOBALS.Element_type.LIGHTNING:
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
+			return city_status
+		_:
+			return city_status
+			
+func impactCarantined(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+func impactUnrested(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+			
+func impactIrradiated(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
+		GLOBALS.Element_type.PLUAGE:
+			return CityStatus.CARANTINE
+		GLOBALS.Element_type.RADIATION:
+			return CityStatus.IRRADIATED
+		_:
+			return city_status
+
+#NATURAL, FIRES, FLOODED, UNREST, CARANTINE, IRRADIATED,
+func cityImpact(city_status, impacting_element) -> CityStatus:
+	match city_status:
+		CityStatus.NATURAL:
+			return impactNatural(impacting_element)
+		CityStatus.FIRES:
+			return impactFires(impacting_element)
+		CityStatus.FLOODED:
+			return impactFlooded(impacting_element)
+		CityStatus.UNREST:
+			return impactUnrested(impacting_element)
+		CityStatus.CARANTINE:
+			return impactCarantined(impacting_element)
+		CityStatus.IRRADIATED:
+			return impactIrradiated(impacting_element)
+		_: 
+			return city_status
 
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			print("city clicked")
-			#type = landscape_interaction(type, Player.selectedElement)
-
-
+			just_clicked = true
+			Player.time += 1
+			city_status = cityImpact(city_status, Player.selectedElement)
+			
+			$Integrity.value = integrity
+			$Population.value = population
+			
+			if city_status == CityStatus.DESTROYED or city_status == CityStatus.DEPOPOLULATED: 
+				$CitySprite.texture = sprites[1]
+			else: 
+				$CitySprite.texture = sprites[0]
+			Player.simulate_cities()
+			
+			Player.effectiveness[Player.selectedElement] /= 1.5
+			
 func _on_area_2d_mouse_entered() -> void:
-	mouse_inside = true # Replace with function body.
+	mouse_inside = true
+	$Integrity.visible = true
+	$Population.visible = true
 
 
 func _on_area_2d_mouse_exited() -> void:
 	mouse_inside = false
+	$Integrity.visible = false
+	$Population.visible = false

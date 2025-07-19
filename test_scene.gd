@@ -1,17 +1,18 @@
-extends Node2D
-
-#{WASTE, PLANE, FOREST, SWAMP, MOUNTAIN, ISLAND}
+class_name Main extends Node2D
 
 const width = 7
 const height = 7
-const startX = -4
+const startX = -3
 const startY = -3
 
 func xy2i(x, y):
-	return x + width * y
+	return (x + startX) + width * (y + startY)
 
 var cities = {
-	xy2i(5, 0) : null
+	xy2i(0, 0) : null,
+	xy2i(-2, 1) : null,
+	xy2i(2, 3) : null,
+	xy2i(1, -2) : null,
 }
 
 func _ready() -> void:
@@ -24,6 +25,7 @@ func _ready() -> void:
 				var instance = city.instantiate() 
 				instance.position = Vector2(100*i, 100*j)
 				add_child(instance)
+				Player.city_references.append(instance)
 			else:
 				var instance = landscape.instantiate()
 				instance.position = Vector2(100*i, 100*j)
@@ -33,4 +35,4 @@ func _ready() -> void:
 	var instance : Node2D = ui.instantiate()
 	instance.position.x = 400
 	instance.position.y = -180
-	#add_child(instance)
+	
