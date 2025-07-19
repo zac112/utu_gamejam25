@@ -3,98 +3,117 @@
 [ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="1_putuj"]
 [ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="2_xbnss"]
 
-[node name="ElementButtons" type="Node2D" node_paths=PackedStringArray("checkboxes")]
+[node name="ElementButtons" type="Node2D" node_paths=PackedStringArray("elements")]
 script = ExtResource("1_putuj")
-checkboxes = [NodePath("CheckBox Fire"), NodePath("CheckBox Air"), null, null, null, null]
+elements = [NodePath("Fire"), NodePath("Air"), NodePath("Water"), NodePath("Earth"), NodePath("Plague"), NodePath("Lightning")]
 
-[node name="CheckBox Earth" type="CheckBox" parent="."]
-offset_left = 3.0
+[node name="Earth" type="Node2D" parent="."]
+position = Vector2(44, 243)
+
+[node name="CheckBox Earth" type="CheckBox" parent="Earth"]
 offset_top = -174.0
-offset_right = 27.0
+offset_right = 24.0
 offset_bottom = -150.0
 button_group = ExtResource("2_xbnss")
 
-[node name="CheckBox Water" type="CheckBox" parent="."]
-offset_left = 4.0
-offset_top = -118.0
-offset_right = 28.0
-offset_bottom = -94.0
-button_pressed = true
-button_group = ExtResource("2_xbnss")
-
-[node name="CheckBox Fire" type="CheckBox" parent="."]
-offset_left = 3.0
-offset_top = -202.0
-offset_right = 27.0
-offset_bottom = -178.0
-button_group = ExtResource("2_xbnss")
-
-[node name="CheckBox Air" type="CheckBox" parent="."]
-offset_left = 4.0
-offset_top = -147.0
-offset_right = 28.0
-offset_bottom = -123.0
-button_group = ExtResource("2_xbnss")
-
-[node name="Fire label" type="Label" parent="."]
-offset_left = 38.0
-offset_top = -204.0
-offset_right = 78.0
-offset_bottom = -181.0
-text = "Fire"
-
-[node name="Air label" type="Label" parent="."]
-offset_left = 38.0
-offset_top = -147.0
-offset_right = 80.0
-offset_bottom = -124.0
-text = "Air"
-
-[node name="Earth label" type="Label" parent="."]
-offset_left = 38.0
+[node name="Earth label" type="Label" parent="Earth"]
+offset_left = 25.0
 offset_top = -175.0
-offset_right = 80.0
+offset_right = 67.0
 offset_bottom = -152.0
 text = "Earth"
 
-[node name="Lightning label" type="Label" parent="."]
-offset_left = 35.0
-offset_top = -256.0
-offset_right = 108.0
-offset_bottom = -233.0
-text = "Lightning"
+[node name="Fire" type="Node2D" parent="."]
+position = Vector2(44, 243)
 
-[node name="Water label" type="Label" parent="."]
-offset_left = 37.0
-offset_top = -119.0
-offset_right = 89.0
-offset_bottom = -96.0
+[node name="CheckBox Fire" type="CheckBox" parent="Fire"]
+offset_top = -202.0
+offset_right = 24.0
+offset_bottom = -178.0
+button_group = ExtResource("2_xbnss")
+
+[node name="Fire label" type="Label" parent="Fire"]
+offset_left = 25.0
+offset_top = -204.0
+offset_right = 65.0
+offset_bottom = -181.0
+text = "Fire"
+
+[node name="Water" type="Node2D" parent="."]
+position = Vector2(44, 243)
+
+[node name="CheckBox Water" type="CheckBox" parent="Water"]
+offset_top = -225.0
+offset_right = 24.0
+offset_bottom = -201.0
+button_pressed = true
+button_group = ExtResource("2_xbnss")
+
+[node name="Water label" type="Label" parent="Water"]
+offset_left = 25.0
+offset_top = -226.0
+offset_right = 77.0
+offset_bottom = -203.0
 text = "Water"
 
-[node name="Plauge label" type="Label" parent="."]
-offset_left = 36.0
-offset_top = -229.0
-offset_right = 88.0
-offset_bottom = -206.0
+[node name="Air" type="Node2D" parent="."]
+position = Vector2(44, 243)
+
+[node name="CheckBox Air" type="CheckBox" parent="Air"]
+offset_top = -147.0
+offset_right = 24.0
+offset_bottom = -123.0
+button_group = ExtResource("2_xbnss")
+
+[node name="Air label" type="Label" parent="Air"]
+offset_left = 25.0
+offset_top = -147.0
+offset_right = 67.0
+offset_bottom = -124.0
+text = "Air"
+
+[node name="Lightning" type="Node2D" parent="."]
+position = Vector2(44, 243)
+
+[node name="Lightning label" type="Label" parent="Lightning"]
+offset_left = 25.0
+offset_top = -120.0
+offset_right = 98.0
+offset_bottom = -97.0
+text = "Lightning"
+
+[node name="CheckBox Lightning" type="CheckBox" parent="Lightning"]
+offset_top = -121.0
+offset_right = 24.0
+offset_bottom = -97.0
+button_group = ExtResource("2_xbnss")
+
+[node name="Plague" type="Node2D" parent="."]
+position = Vector2(44, 243)
+
+[node name="Plauge label" type="Label" parent="Plague"]
+offset_left = 25.0
+offset_top = -93.0
+offset_right = 77.0
+offset_bottom = -70.0
 text = "Plauge"
 
-[node name="CheckBox Plauge" type="CheckBox" parent="."]
-offset_left = 3.0
-offset_top = -229.0
-offset_right = 27.0
-offset_bottom = -205.0
+[node name="CheckBox Plauge" type="CheckBox" parent="Plague"]
+offset_top = -93.0
+offset_right = 24.0
+offset_bottom = -69.0
 button_group = ExtResource("2_xbnss")
 
-[node name="CheckBox Lightning" type="CheckBox" parent="."]
-offset_left = 3.0
-offset_top = -257.0
-offset_right = 27.0
-offset_bottom = -233.0
-button_group = ExtResource("2_xbnss")
+[node name="Label" type="Label" parent="."]
+offset_left = 12.0
+offset_top = -11.0
+offset_right = 177.0
+offset_bottom = 12.0
+text = "Choose your element"
 
-[connection signal="pressed" from="CheckBox Earth" to="." method="_on_check_box_pressed" binds= [4]]
-[connection signal="pressed" from="CheckBox Water" to="." method="_on_check_box_pressed" binds= [2]]
-[connection signal="pressed" from="CheckBox Fire" to="." method="_on_check_box_pressed" binds= [0]]
-[connection signal="pressed" from="CheckBox Air" to="." method="_on_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="CheckBox Plauge" to="." method="_on_check_box_pressed" binds= [5]]
-[connection signal="pressed" from="CheckBox Lightning" to="." method="_on_check_box_pressed" binds= [6]]
+[connection signal="pressed" from="Earth/CheckBox Earth" to="." method="_on_check_box_pressed" binds= [4]]
+[connection signal="pressed" from="Fire/CheckBox Fire" to="." method="_on_check_box_pressed" binds= [0]]
+[connection signal="pressed" from="Water/CheckBox Water" to="." method="_on_check_box_pressed" binds= [2]]
+[connection signal="pressed" from="Air/CheckBox Air" to="." method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="Lightning/CheckBox Lightning" to="." method="_on_check_box_pressed" binds= [6]]
+[connection signal="pressed" from="Plague/CheckBox Plauge" to="." method="_on_check_box_pressed" binds= [5]]
