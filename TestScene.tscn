@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dudckr3yrl10b"]
+
+[ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
+[ext_resource type="Texture2D" uid="uid://bio84xlk35btk" path="res://assets/city.png" id="2_wicfy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Blank" type="Sprite2D" parent="."]
+position = Vector2(-300, -155)
+texture = ExtResource("1_cguwc")
+
+[node name="Blank2" type="Sprite2D" parent="."]
+position = Vector2(-200, -155)
+texture = ExtResource("1_cguwc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blank3" type="Sprite2D" parent="."]
+position = Vector2(-300, -55)
+texture = ExtResource("1_cguwc")
+
+[node name="Blank4" type="Sprite2D" parent="."]
+position = Vector2(-200, -55)
+texture = ExtResource("1_cguwc")
+
+[node name="City" type="Sprite2D" parent="."]
+position = Vector2(-100, -155)
+texture = ExtResource("2_wicfy")
+
+[node name="Blank5" type="Sprite2D" parent="."]
+position = Vector2(-100, -55)
+texture = ExtResource("1_cguwc")
