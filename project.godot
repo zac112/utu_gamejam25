@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Elements="*res://assets/scripts/elements.gd"
+Player="*res://player.gd"
 
 [display]
 

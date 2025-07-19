@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dudckr3yrl10b"]
+[gd_scene load_steps=6 format=3 uid="uid://15775gee50nb"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
+[ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="Texture2D" uid="uid://bio84xlk35btk" path="res://assets/city.png" id="2_wicfy"]
 [ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="4_go42g"]
 [ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="4_sreuk"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_sreuk")
 
 [node name="Blank" type="Sprite2D" parent="."]
 position = Vector2(-300, -155)
@@ -35,35 +37,95 @@ texture = ExtResource("1_cguwc")
 
 [node name="ElementButtons" type="Node2D" parent="." node_paths=PackedStringArray("checkboxes")]
 script = ExtResource("4_go42g")
-checkboxes = [NodePath("CheckBox"), NodePath("CheckBox2")]
+checkboxes = [NodePath("CheckBox Fire"), NodePath("CheckBox Air"), null, null, null, null]
 
-[node name="CheckBox" type="CheckBox" parent="ElementButtons"]
+[node name="CheckBox Earth" type="CheckBox" parent="ElementButtons"]
+offset_left = 3.0
+offset_top = -174.0
+offset_right = 27.0
+offset_bottom = -150.0
+button_group = ExtResource("4_sreuk")
+
+[node name="CheckBox Water" type="CheckBox" parent="ElementButtons"]
+offset_left = 4.0
+offset_top = -118.0
+offset_right = 28.0
+offset_bottom = -94.0
+button_group = ExtResource("4_sreuk")
+
+[node name="CheckBox Fire" type="CheckBox" parent="ElementButtons"]
 offset_left = 3.0
 offset_top = -202.0
 offset_right = 27.0
 offset_bottom = -178.0
 button_group = ExtResource("4_sreuk")
 
-[node name="CheckBox2" type="CheckBox" parent="ElementButtons"]
+[node name="CheckBox Air" type="CheckBox" parent="ElementButtons"]
 offset_left = 4.0
-offset_top = -176.0
+offset_top = -147.0
 offset_right = 28.0
-offset_bottom = -152.0
+offset_bottom = -123.0
 button_group = ExtResource("4_sreuk")
 
-[node name="Label" type="Label" parent="ElementButtons"]
+[node name="Fire label" type="Label" parent="ElementButtons"]
 offset_left = 38.0
 offset_top = -204.0
 offset_right = 78.0
 offset_bottom = -181.0
 text = "Fire"
 
-[node name="Label2" type="Label" parent="ElementButtons"]
+[node name="Air label" type="Label" parent="ElementButtons"]
+offset_left = 38.0
+offset_top = -147.0
+offset_right = 80.0
+offset_bottom = -124.0
+text = "Air"
+
+[node name="Earth label" type="Label" parent="ElementButtons"]
 offset_left = 38.0
 offset_top = -175.0
 offset_right = 80.0
 offset_bottom = -152.0
 text = "Earth"
 
-[connection signal="pressed" from="ElementButtons/CheckBox" to="ElementButtons" method="_on_check_box_pressed" binds= [0]]
-[connection signal="pressed" from="ElementButtons/CheckBox2" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[node name="Lightning label" type="Label" parent="ElementButtons"]
+offset_left = 35.0
+offset_top = -256.0
+offset_right = 108.0
+offset_bottom = -233.0
+text = "Lightning"
+
+[node name="Water label" type="Label" parent="ElementButtons"]
+offset_left = 37.0
+offset_top = -119.0
+offset_right = 89.0
+offset_bottom = -96.0
+text = "Water"
+
+[node name="Plauge label" type="Label" parent="ElementButtons"]
+offset_left = 36.0
+offset_top = -229.0
+offset_right = 88.0
+offset_bottom = -206.0
+text = "Plauge"
+
+[node name="CheckBox Plauge" type="CheckBox" parent="ElementButtons"]
+offset_left = 3.0
+offset_top = -229.0
+offset_right = 27.0
+offset_bottom = -205.0
+button_group = ExtResource("4_sreuk")
+
+[node name="CheckBox Lightning" type="CheckBox" parent="ElementButtons"]
+offset_left = 3.0
+offset_top = -257.0
+offset_right = 27.0
+offset_bottom = -233.0
+button_group = ExtResource("4_sreuk")
+
+[connection signal="pressed" from="ElementButtons/CheckBox Earth" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Water" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Fire" to="ElementButtons" method="_on_check_box_pressed" binds= [0]]
+[connection signal="pressed" from="ElementButtons/CheckBox Air" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Plauge" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="ElementButtons/CheckBox Lightning" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]

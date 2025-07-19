@@ -1,8 +1,7 @@
 extends Node2D
 
-@export var checkboxes : Array[CheckBox]
-@export var selectedElement : int
+@export var checkboxes : Array[CheckBox] 
 
 func _on_check_box_pressed(element: int) -> void:
-	selectedElement = element
-	print(element)
+	Player.selectedElement = element
+	print(Player.selectedElement)
