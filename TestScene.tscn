@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dudckr3yrl10b"]
+[gd_scene load_steps=5 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Texture2D" uid="uid://bio84xlk35btk" path="res://assets/city.png" id="2_wicfy"]
+[ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="4_go42g"]
+[ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="4_sreuk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,3 +32,38 @@ texture = ExtResource("2_wicfy")
 [node name="Blank5" type="Sprite2D" parent="."]
 position = Vector2(-100, -55)
 texture = ExtResource("1_cguwc")
+
+[node name="ElementButtons" type="Node2D" parent="." node_paths=PackedStringArray("checkboxes")]
+script = ExtResource("4_go42g")
+checkboxes = [NodePath("CheckBox"), NodePath("CheckBox2")]
+
+[node name="CheckBox" type="CheckBox" parent="ElementButtons"]
+offset_left = 3.0
+offset_top = -202.0
+offset_right = 27.0
+offset_bottom = -178.0
+button_group = ExtResource("4_sreuk")
+
+[node name="CheckBox2" type="CheckBox" parent="ElementButtons"]
+offset_left = 4.0
+offset_top = -176.0
+offset_right = 28.0
+offset_bottom = -152.0
+button_group = ExtResource("4_sreuk")
+
+[node name="Label" type="Label" parent="ElementButtons"]
+offset_left = 38.0
+offset_top = -204.0
+offset_right = 78.0
+offset_bottom = -181.0
+text = "Fire"
+
+[node name="Label2" type="Label" parent="ElementButtons"]
+offset_left = 38.0
+offset_top = -175.0
+offset_right = 80.0
+offset_bottom = -152.0
+text = "Earth"
+
+[connection signal="pressed" from="ElementButtons/CheckBox" to="ElementButtons" method="_on_check_box_pressed" binds= [0]]
+[connection signal="pressed" from="ElementButtons/CheckBox2" to="ElementButtons" method="_on_check_box_pressed" binds= [1]]
