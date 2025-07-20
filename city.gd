@@ -149,9 +149,11 @@ func impactFires(element) -> CityStatus:
 			return CityStatus.FOG
 		GLOBALS.Element_type.RADIATION:
 			apply_damage(element)
-			return CityStatus.IRRADIATED
+			just_impacted = false
+			return CityStatus.FIRES
 		_:
 			apply_damage(element)
+			just_impacted = false
 			return city_status
 			
 func impactFog(element) -> CityStatus:
@@ -173,8 +175,11 @@ func impactFog(element) -> CityStatus:
 			return CityStatus.FIRES
 		GLOBALS.Element_type.RADIATION:
 			apply_damage(element)
+			just_impacted = false
 			return city_status
 		_:
+			apply_damage(element)
+			just_impacted = false
 			return city_status
 			
 func impactFlooded(element) -> CityStatus:
@@ -190,12 +195,16 @@ func impactFlooded(element) -> CityStatus:
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.RADIATION:
 			apply_damage(element)
+			just_impacted = false
 			return city_status
 		GLOBALS.Element_type.LIGHTNING:
 			apply_damage(element, 2.0, 2.0)
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
+			just_impacted = false
 			return city_status
 		_:
+			apply_damage(element)
+			just_impacted = false
 			return city_status
 			
 func impactCarantined(element) -> CityStatus:
@@ -209,6 +218,7 @@ func impactCarantined(element) -> CityStatus:
 		GLOBALS.Element_type.AIR:
 			apply_damage(element)
 			Player.handle_plague_spread(location)
+			just_impacted = false
 			return city_status
 		GLOBALS.Element_type.PLUAGE:
 			apply_damage(element, 0.5, 0.5)
@@ -217,6 +227,8 @@ func impactCarantined(element) -> CityStatus:
 			apply_damage(GLOBALS.Element_type.PLUAGE, 3.0, 3.0)
 			return CityStatus.IRRADIATED
 		_:
+			apply_damage(element)
+			just_impacted = false
 			return city_status
 			
 func impactUnrested(element) -> CityStatus:
@@ -231,6 +243,8 @@ func impactUnrested(element) -> CityStatus:
 		GLOBALS.Element_type.RADIATION:
 			return CityStatus.IRRADIATED
 		_:
+			apply_damage(element)
+			just_impacted = false
 			return city_status
 			
 			

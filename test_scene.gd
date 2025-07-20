@@ -11,7 +11,7 @@ func xy2i(x, y):
 var cities = {
 	xy2i(0, 0) : null,
 	xy2i(-2, 1) : null,
-	xy2i(2, 3) : null,
+	xy2i(1, 3) : null,
 	xy2i(1, -2) : null,
 }
 
@@ -62,8 +62,8 @@ var landscape_map = [
 	GLOBALS.Landscape_type.SWAMP,
 	GLOBALS.Landscape_type.SWAMP,
 	GLOBALS.Landscape_type.SWAMP,
-	GLOBALS.Landscape_type.WASTE,
-	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.FOREST,
+	GLOBALS.Landscape_type.FOREST,
 	# row 7
 	GLOBALS.Landscape_type.WATER,
 	GLOBALS.Landscape_type.PLANE,
@@ -71,7 +71,7 @@ var landscape_map = [
 	GLOBALS.Landscape_type.SWAMP,
 	GLOBALS.Landscape_type.WATER,
 	GLOBALS.Landscape_type.WASTE,
-	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.FOREST,
 ]
 
 func _ready() -> void:

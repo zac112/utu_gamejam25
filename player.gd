@@ -115,8 +115,13 @@ func handle_eruption(idx: int):
 	var ls = res[1]
 	
 	for l in ls:
-		l.type = GLOBALS.Landscape_type.WASTE
-		l.changeTexture()
+		if (l.type == GLOBALS.Landscape_type.SWAMP
+		 or l.type == GLOBALS.Landscape_type.PLANE
+		 or l.type == GLOBALS.Landscape_type.FOREST
+		 or l.type == GLOBALS.Landscape_type.HILL
+		):
+			l.type = GLOBALS.Landscape_type.WASTE
+			l.changeTexture()
 	
 	for c in cs:
 		c.handle_eruption()
@@ -134,6 +139,7 @@ func handle_plague_spread(idx : int) -> void:
 		 or l.type == GLOBALS.Landscape_type.PLANE
 		 or l.type == GLOBALS.Landscape_type.WATER
 		 or l.type == GLOBALS.Landscape_type.ISLAND
+		 or l.type == GLOBALS.Landscape_type.FOREST
 		 or l.type == GLOBALS.Landscape_type.HILL
 		):
 			l.type = GLOBALS.Landscape_type.SWAMP

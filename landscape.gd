@@ -48,7 +48,7 @@ func swamp_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.EARTH: 
 			return GLOBALS.Landscape_type.WASTE
-		GLOBALS.Element_type.FIRE: 
+		GLOBALS.Element_type.STEAM: 
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.PLUAGE)
 			return GLOBALS.Landscape_type.SWAMP
 		GLOBALS.Element_type.WATER: 
@@ -60,7 +60,7 @@ func mountain_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.FIRE: 
 			return GLOBALS.Landscape_type.VOLCANO
-		_: 
+		_:
 			return GLOBALS.Landscape_type.MOUNTAIN
 			
 func volcano_interaction(impacting) -> GLOBALS.Landscape_type:
@@ -68,15 +68,18 @@ func volcano_interaction(impacting) -> GLOBALS.Landscape_type:
 		GLOBALS.Element_type.FIRE: 
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.LIGHTNING)
 			Player.handle_eruption(location)
+		GLOBALS.Element_type.WATER: 
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
+			Player.handle_eruption(location)
 		_: pass
 	return GLOBALS.Landscape_type.VOLCANO
 			
 func hill_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
-		GLOBALS.Element_type.FIRE: 
-			return GLOBALS.Landscape_type.WASTE
 		GLOBALS.Element_type.EARTH: 
 			return GLOBALS.Landscape_type.MOUNTAIN
+		GLOBALS.Element_type.WATER: 
+			return GLOBALS.Landscape_type.SWAMP
 		_: 
 			return GLOBALS.Landscape_type.HILL
 
@@ -93,10 +96,23 @@ func water_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.EARTH: 
 			return GLOBALS.Landscape_type.ISLAND
+		GLOBALS.Element_type.FIRE: 
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
+			return GLOBALS.Landscape_type.WATER
 		_: 
 			return GLOBALS.Landscape_type.WATER
 
 func landscape_interaction(impacted, impacting) -> GLOBALS.Landscape_type:
+	if impacting == GLOBALS.Element_type.WATER and location == 48:
+		Player.availabeElements.get_or_add(GLOBALS.Element_type.RADIATION)
+		if(type == GLOBALS.Landscape_type.MOUNTAIN
+		or type == GLOBALS.Landscape_type.VOLCANO
+		or type == GLOBALS.Landscape_type.WATER
+		):
+			return type
+		else: 
+			return GLOBALS.Landscape_type.WASTE
+		
 	match impacted: 
 		GLOBALS.Landscape_type.WASTE: 
 			return wastes_interaction(impacting)
