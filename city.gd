@@ -3,6 +3,8 @@ class_name City extends Node2D
 
 @export var sprites : Array[Texture2D]
 
+signal spellOnCity
+
 enum CityStatus {
 	NATURAL,
 	FIRES,
@@ -267,10 +269,20 @@ func _input(event):
 			$Integrity.value = integrity
 			$Population.value = population
 			
-			
 			Player.simulate_cities()
 			
 			Player.effectiveness[Player.selectedElement] /= 1.5
+			
+			if city_status == CityStatus.DESTROYED: 
+				$CitySprite.texture = sprites[1]
+			elif city_status == CityStatus.DEPOPOLULATED:
+				$CitySprite.texture = sprites[2]
+			else: 
+				$CitySprite.texture = sprites[0]
+			Player.simulate_cities()			
+			Player.effectiveness[Player.selectedElement] /= 1.5
+			
+			
 			
 			
 func changeTexture() -> void:
@@ -281,6 +293,9 @@ func changeTexture() -> void:
 	$CitySprite.texture = sprites[city_status]
 	tween = get_tree().create_tween()
 	tween.tween_property($CitySprite, "modulate", Color.WHITE, length)
+	
+	Player.mana -= 1
+	spellOnCity.emit()
 			
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true
