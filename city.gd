@@ -39,6 +39,7 @@ func serializeCityStatus(city_status) -> String:
 			return "??"
 
 var city_status = CityStatus.NATURAL
+var am_i_city = true
 
 var integrity : int = 100
 var population : int = 100
@@ -46,6 +47,8 @@ var just_clicked = false
 
 var carantine_max = 1
 var carantime_step = 0
+
+var location : int
 
 var mouse_inside = false
 
@@ -235,26 +238,49 @@ func cityImpact(city_status, impacting_element) -> CityStatus:
 			return impactIrradiated(impacting_element)
 		_: 
 			return city_status
-
+			
+func handle_eruption() -> void:
+	match city_status:
+		CityStatus.FLOODED:
+			pass
+		CityStatus.CARANTINE:
+			pass
+		_: 
+			pass
+			
+	if city_status != CityStatus.FIRES:
+		city_status = CityStatus.FIRES
+		changeTexture()
+	
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			just_clicked = true
 			Player.time += 1
-			city_status = cityImpact(city_status, Player.selectedElement)
+			var new_city_status = cityImpact(city_status, Player.selectedElement)
+			
+			if new_city_status != city_status:
+				city_status = new_city_status
+				changeTexture()
+				
 			
 			$Integrity.value = integrity
 			$Population.value = population
 			
-			if city_status == CityStatus.DESTROYED: 
-				$CitySprite.texture = sprites[1]
-			elif city_status == CityStatus.DEPOPOLULATED:
-				$CitySprite.texture = sprites[2]
-			else: 
-				$CitySprite.texture = sprites[0]
+			
 			Player.simulate_cities()
 			
 			Player.effectiveness[Player.selectedElement] /= 1.5
+			
+			
+func changeTexture() -> void:
+	var length = 0.5
+	var tween = get_tree().create_tween()
+	tween.tween_property($CitySprite, "modulate", Color.TRANSPARENT, length)	
+	await get_tree().create_timer(length).timeout
+	$CitySprite.texture = sprites[city_status]
+	tween = get_tree().create_tween()
+	tween.tween_property($CitySprite, "modulate", Color.WHITE, length)
 			
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true

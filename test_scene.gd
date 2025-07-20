@@ -19,17 +19,25 @@ func _ready() -> void:
 	var landscape = load("res://landscape.tscn")
 	var city = load("res://city.tscn")
 	
+	Player.field_width = width
+	
+	var loc = 0
 	for i in range(startX, startX + width):
 		for j in range(startY, startY + height):    
 			if xy2i(i, j) in cities:
 				var instance = city.instantiate() 
 				instance.position = Vector2(100*i, 100*j)
-				add_child(instance)
+				instance.location = loc
 				Player.city_references.append(instance)
+				Player.cells.append(instance)
+				add_child(instance)
 			else:
 				var instance = landscape.instantiate()
 				instance.position = Vector2(100*i, 100*j)
+				instance.location = loc
+				Player.cells.append(instance)
 				add_child(instance)
+			loc += 1
 			
 	var ui = load("res://assets/ElementButtons/element_buttons.tscn")
 	var instance : Node2D = ui.instantiate()

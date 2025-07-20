@@ -1,20 +1,36 @@
 class_name Landscape extends Node2D
 
-# enum Landscape_type {WASTE = 0, PLANE, FOREST, SWAMP, MOUNTAIN, ISLAND}
+#enum Landscape_type {
+	#WASTE = 0,
+	#PLANE,
+	#FOREST,
+	#SWAMP,
+	#MOUNTAIN,
+	#ISLAND,
+	
+	#HILL,
+	#VOLCANO,
+	#WATER,
+#}
+
 @export var sprites : Array[Texture2D]
 
 var type = GLOBALS.Landscape_type.WASTE
 
+var location : int
+
+var am_i_city = false
+
 var mouse_inside = false
-	
+
 func wastes_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting: 
 		GLOBALS.Element_type.WATER:
 			return GLOBALS.Landscape_type.PLANE
+		GLOBALS.Element_type.EARTH: 
+			return GLOBALS.Landscape_type.HILL
 		_:
 			return GLOBALS.Landscape_type.WASTE
-			
-			
 
 func plane_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
@@ -22,9 +38,11 @@ func plane_interaction(impacting) -> GLOBALS.Landscape_type:
 			return GLOBALS.Landscape_type.FOREST
 		GLOBALS.Element_type.FIRE: 
 			return GLOBALS.Landscape_type.WASTE
+		GLOBALS.Element_type.EARTH: 
+			return GLOBALS.Landscape_type.HILL
 		_: 
 			return GLOBALS.Landscape_type.PLANE
-			
+
 func forest_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.FIRE: 
@@ -33,21 +51,52 @@ func forest_interaction(impacting) -> GLOBALS.Landscape_type:
 			return GLOBALS.Landscape_type.SWAMP
 		_: 
 			return GLOBALS.Landscape_type.FOREST
-			
+
 func swamp_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
+		GLOBALS.Element_type.EARTH: 
+			return GLOBALS.Landscape_type.WASTE
+		GLOBALS.Element_type.WATER: 
+			return GLOBALS.Landscape_type.WATER
 		_: 
 			return GLOBALS.Landscape_type.SWAMP
 			
 func mountain_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
+		GLOBALS.Element_type.FIRE: 
+			return GLOBALS.Landscape_type.VOLCANO
 		_: 
 			return GLOBALS.Landscape_type.MOUNTAIN
 			
+func volcano_interaction(impacting) -> GLOBALS.Landscape_type:
+	match impacting:
+		GLOBALS.Element_type.FIRE: 
+			Player.handle_eruption(location)
+		_: pass
+	return GLOBALS.Landscape_type.VOLCANO
+			
+func hill_interaction(impacting) -> GLOBALS.Landscape_type:
+	match impacting:
+		GLOBALS.Element_type.FIRE: 
+			return GLOBALS.Landscape_type.WASTE
+		GLOBALS.Element_type.EARTH: 
+			return GLOBALS.Landscape_type.MOUNTAIN
+		_: 
+			return GLOBALS.Landscape_type.HILL
+
 func island_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
+		GLOBALS.Element_type.FIRE: 
+			return GLOBALS.Landscape_type.VOLCANO
 		_: 
 			return GLOBALS.Landscape_type.ISLAND
+			
+func water_interaction(impacting) -> GLOBALS.Landscape_type:
+	match impacting:
+		GLOBALS.Element_type.EARTH: 
+			return GLOBALS.Landscape_type.ISLAND
+		_: 
+			return GLOBALS.Landscape_type.WATER
 
 func landscape_interaction(impacted, impacting) -> GLOBALS.Landscape_type:
 	match impacted: 
@@ -61,8 +110,14 @@ func landscape_interaction(impacted, impacting) -> GLOBALS.Landscape_type:
 			return swamp_interaction(impacting)
 		GLOBALS.Landscape_type.MOUNTAIN:
 			return mountain_interaction(impacting)
+		GLOBALS.Landscape_type.HILL:
+			return hill_interaction(impacting)
 		GLOBALS.Landscape_type.ISLAND:
 			return island_interaction(impacting)
+		GLOBALS.Landscape_type.WATER:
+			return water_interaction(impacting)
+		GLOBALS.Landscape_type.VOLCANO:
+			return volcano_interaction(impacting)
 		_:
 			push_error("Invalid impacting element.")
 			return GLOBALS.Landscape_type.WASTE
@@ -80,15 +135,11 @@ func changeTexture() -> void:
 	
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
-		#print(event.position	)
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			type = landscape_interaction(type, Player.selectedElement)			
 			changeTexture()
 			Player.time += 1
 			Player.simulate_cities()
-			
-			
-		
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true

@@ -7,8 +7,9 @@ enum Landscape_type {
 	SWAMP,
 	MOUNTAIN,
 	ISLAND,
+	HILL,
 	VOLCANO,
-	#SECRET_ISLAND
+	WATER,
 }
 
 enum Element_type {
