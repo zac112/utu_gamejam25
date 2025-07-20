@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dudckr3yrl10b"]
+[gd_scene load_steps=6 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://f3mrnpsj47tn" path="res://assets/ElementButtons/element_buttons.tscn" id="3_wicfy"]
 [ext_resource type="Texture2D" uid="uid://b0pmvfbxcckf0" path="res://assets/landscape_assests/island.png" id="4_go42g"]
+[ext_resource type="Texture2D" uid="uid://d4cmj2lxk881f" path="res://assets/graphics/manaoverlay.png" id="5_sreuk"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sreuk")
@@ -25,8 +26,13 @@ offset_top = -345.0
 offset_right = 358.0
 offset_bottom = -245.0
 scale = Vector2(0.442655, 6.87312)
+step = 0.0
 value = 100.0
-rounded = true
 fill_mode = 3
 texture_under = ExtResource("1_cguwc")
 texture_progress = ExtResource("4_go42g")
+
+[node name="Manaoverlay" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(47.441, 49.7591)
+scale = Vector2(1.084, 0.17)
+texture = ExtResource("5_sreuk")
