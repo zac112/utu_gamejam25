@@ -1,0 +1,31 @@
+[gd_scene load_steps=12 format=3 uid="uid://das7b8u7m8c6m"]
+
+[ext_resource type="Script" uid="uid://uyyp43ho63do" path="res://assets/landscape_assests/landscape.gd" id="1_vcvnk"]
+[ext_resource type="Texture2D" uid="uid://bofqi0sy51jmt" path="res://assets/graphics/wasteland.png" id="2_y7rhq"]
+[ext_resource type="Texture2D" uid="uid://b2soj7dd42ria" path="res://assets/graphics/plains.png" id="3_7tgm5"]
+[ext_resource type="Texture2D" uid="uid://fdihu65or0b2" path="res://assets/graphics/forest.png" id="4_gcyvx"]
+[ext_resource type="Texture2D" uid="uid://kr70py8y4b8f" path="res://assets/graphics/swamp.png" id="5_au0n6"]
+[ext_resource type="Texture2D" uid="uid://bhje8a1xfr3j2" path="res://assets/graphics/mountains.png" id="6_7thkv"]
+[ext_resource type="Texture2D" uid="uid://uddxmu53gltr" path="res://assets/graphics/island.png" id="7_tm52v"]
+[ext_resource type="Texture2D" uid="uid://cokeho2jmcoyq" path="res://assets/graphics/hills.png" id="8_nmj78"]
+[ext_resource type="Texture2D" uid="uid://cqq0erbvkopo0" path="res://assets/graphics/volcano.png" id="9_bmpow"]
+[ext_resource type="Texture2D" uid="uid://bk6r6ncdbhqdx" path="res://assets/graphics/water.png" id="10_tql71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ivgy"]
+size = Vector2(96, 99)
+
+[node name="Landscape" type="Node2D"]
+script = ExtResource("1_vcvnk")
+sprites = Array[Texture2D]([ExtResource("2_y7rhq"), ExtResource("3_7tgm5"), ExtResource("4_gcyvx"), ExtResource("5_au0n6"), ExtResource("6_7thkv"), ExtResource("7_tm52v"), ExtResource("8_nmj78"), ExtResource("9_bmpow"), ExtResource("10_tql71")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y7rhq")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5ivgy")
+
+[connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]
