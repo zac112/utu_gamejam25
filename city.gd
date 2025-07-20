@@ -45,7 +45,7 @@ var am_i_city = true
 
 var integrity : int = 100
 var population : int = 100
-var just_clicked = false
+var just_impacted = false
 
 var carantine_max = 1
 var carantime_step = 0
@@ -72,8 +72,11 @@ func apply_damage(element_type, pop_mult=1.0, int_mult=1.0) -> void:
 	integrity -= (d_integrity * int_mult) as int
 	
 func city_idle_tick():
-	if just_clicked:
-		just_clicked = false
+	$Integrity.value = integrity
+	$Population.value = population
+	
+	if just_impacted:
+		just_impacted = false
 		return
 		
 	match city_status:
@@ -242,6 +245,7 @@ func cityImpact(city_status, impacting_element) -> CityStatus:
 			return city_status
 			
 func handle_eruption() -> void:
+	just_impacted = true
 	match city_status:
 		CityStatus.FLOODED:
 			pass
@@ -250,14 +254,14 @@ func handle_eruption() -> void:
 		_: 
 			pass
 			
-	if city_status != CityStatus.FIRES:
-		city_status = CityStatus.FIRES
-		changeTexture()
+	
+	city_status = CityStatus.FIRES
+	changeTexture()
 	
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			just_clicked = true
+			just_impacted = true
 			Player.time += 1
 			var new_city_status = cityImpact(city_status, Player.selectedElement)
 			
@@ -270,16 +274,6 @@ func _input(event):
 			$Population.value = population
 			
 			Player.simulate_cities()
-			
-			Player.effectiveness[Player.selectedElement] /= 1.5
-			
-			if city_status == CityStatus.DESTROYED: 
-				$CitySprite.texture = sprites[1]
-			elif city_status == CityStatus.DEPOPOLULATED:
-				$CitySprite.texture = sprites[2]
-			else: 
-				$CitySprite.texture = sprites[0]
-			Player.simulate_cities()			
 			Player.effectiveness[Player.selectedElement] /= 1.5
 			
 			
