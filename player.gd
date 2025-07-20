@@ -155,5 +155,10 @@ func handle_plague_spread(idx : int) -> void:
 		):
 			l.type = GLOBALS.Landscape_type.SWAMP
 			l.changeTexture()	
-	
-	
+
+
+func check_win() -> bool:
+	for city in city_references:
+		if city.city_status != City.CityStatus.DESTROYED and city.city_status != City.CityStatus.DEPOPOLULATED:
+			return false
+	return true

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://x4m6ahf0whgf"]
+
+[ext_resource type="Script" uid="uid://c65w1cl2y48fo" path="res://assets/win_screen/button.gd" id="1_tusac"]
+
+[node name="Lost" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 303.0
+offset_right = 696.0
+offset_bottom = 452.0
+text = "Play again"
+script = ExtResource("1_tusac")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 79.0
+offset_right = 689.0
+offset_bottom = 252.0
+text = "Congratulations! 
+
+You destroyed all human cities and prevented humans from ravaging your lands. 
+
+However, they will return."
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

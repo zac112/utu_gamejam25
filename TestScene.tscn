@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://15775gee50nb"]
+[gd_scene load_steps=5 format=3 uid="uid://15775gee50nb"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://f3mrnpsj47tn" path="res://assets/ElementButtons/element_buttons.tscn" id="3_wicfy"]
-[ext_resource type="Texture2D" path="res://assets/landscape_assests/island.png" id="4_go42g"]
 [ext_resource type="Texture2D" uid="uid://d4cmj2lxk881f" path="res://assets/graphics/manaoverlay.png" id="5_sreuk"]
 
 [node name="Node2D" type="Node2D"]
@@ -30,7 +29,6 @@ step = 0.0
 value = 100.0
 fill_mode = 3
 texture_under = ExtResource("1_cguwc")
-texture_progress = ExtResource("4_go42g")
 
 [node name="Manaoverlay" type="Sprite2D" parent="TextureProgressBar"]
 position = Vector2(47.441, 49.7591)

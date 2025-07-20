@@ -117,3 +117,8 @@ func spellOnLandscape():
 	var tween = get_tree().create_tween()
 	tween.tween_property($TextureProgressBar, "value", Player.mana, 1).from(Player.mana+1)
 	
+	if Player.check_win():
+		get_tree().change_scene_to_file("res://assets/win_screen/won.tscn")
+	
+	if Player.mana <= 0:
+		get_tree().change_scene_to_file("res://assets/lose_screen/lost.tscn")
