@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://f3mrnpsj47tn" path="res://assets/ElementButtons/element_buttons.tscn" id="3_wicfy"]
-[ext_resource type="Texture2D" uid="uid://b0pmvfbxcckf0" path="res://assets/landscape_assests/island.png" id="4_go42g"]
+[ext_resource type="Texture2D" path="res://assets/landscape_assests/island.png" id="4_go42g"]
 [ext_resource type="Texture2D" uid="uid://d4cmj2lxk881f" path="res://assets/graphics/manaoverlay.png" id="5_sreuk"]
 
 [node name="Node2D" type="Node2D"]

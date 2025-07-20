@@ -75,7 +75,7 @@ var landscape_map = [
 ]
 
 func _ready() -> void:
-	var landscape = load("res://landscape.tscn")
+	var landscape = load("res://assets/landscape_assests/landscape.tscn")
 	var city = load("res://city.tscn")
 	$RadioactiveTimer.wait_time = randi_range(60,80)
 	$RadioactiveTimer.start()

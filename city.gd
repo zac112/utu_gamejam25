@@ -97,7 +97,7 @@ func city_idle_tick():
 				city_status = CityStatus.NATURAL
 		CityStatus.UNREST:
 			apply_flat_damage(12, 12)
-			var i = randi() % 10
+			var i = randi() % 20
 			if i == 0:
 				city_status = CityStatus.NATURAL
 			elif i == 1:
