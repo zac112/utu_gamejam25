@@ -6,7 +6,7 @@ const startX = -4
 const startY = -3
 
 func xy2i(x, y):
-	return (x + startX) + width * (y + startY)
+	return (x - startX) + width * (y - startY)
 
 var cities = {
 	xy2i(0, 0) : null,
@@ -14,6 +14,65 @@ var cities = {
 	xy2i(2, 3) : null,
 	xy2i(1, -2) : null,
 }
+
+var landscape_map = [
+	# row 1
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.MOUNTAIN,
+	# row 2
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	# row 3
+	GLOBALS.Landscape_type.MOUNTAIN,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.ISLAND,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	# row 4
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	# row 5
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	# row 6
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.SWAMP,
+	GLOBALS.Landscape_type.SWAMP,
+	GLOBALS.Landscape_type.SWAMP,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+	# row 7
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.PLANE,
+	GLOBALS.Landscape_type.SWAMP,
+	GLOBALS.Landscape_type.SWAMP,
+	GLOBALS.Landscape_type.WATER,
+	GLOBALS.Landscape_type.WASTE,
+	GLOBALS.Landscape_type.WASTE,
+]
 
 func _ready() -> void:
 	var landscape = load("res://landscape.tscn")
@@ -37,11 +96,12 @@ func _ready() -> void:
 				var instance = landscape.instantiate()
 				instance.position = Vector2(100*i, 100*j)
 				instance.location = loc
+				if xy2i(i, j) < landscape_map.size():
+					instance.type = landscape_map[xy2i(i, j)]
 				Player.cells.append(instance)
 				add_child(instance)
 				
 				instance.spellOnLandscape.connect(spellOnLandscape)
-				
 			loc += 1
 			
 	var ui = load("res://assets/ElementButtons/element_buttons.tscn")

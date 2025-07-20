@@ -121,3 +121,22 @@ func handle_eruption(idx: int):
 	for c in cs:
 		c.handle_eruption()
 		
+
+func handle_plague_spread(idx : int) -> void:
+	if idx < 0 or idx >= cells.size():
+		return
+	
+	var res = neighbours(idx)
+	var ls = res[1]
+	
+	for l in ls:
+		if (l.type == GLOBALS.Landscape_type.WASTE
+		 or l.type == GLOBALS.Landscape_type.PLANE
+		 or l.type == GLOBALS.Landscape_type.WATER
+		 or l.type == GLOBALS.Landscape_type.ISLAND
+		 or l.type == GLOBALS.Landscape_type.HILL
+		):
+			l.type = GLOBALS.Landscape_type.SWAMP
+			l.changeTexture()	
+	
+	

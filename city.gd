@@ -140,61 +140,81 @@ func impactNatural(element) -> CityStatus:
 			return city_status
 			
 func impactFires(element) -> CityStatus:
-	apply_damage(element)
 	match element:
 		GLOBALS.Element_type.FIRE:
+			apply_damage(element)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.WATER:
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
 			return CityStatus.FOG
 		GLOBALS.Element_type.RADIATION:
+			apply_damage(element)
 			return CityStatus.IRRADIATED
 		_:
+			apply_damage(element)
 			return city_status
 			
 func impactFog(element) -> CityStatus:
-	apply_damage(element)
 	match element:
 		GLOBALS.Element_type.FIRE:
+			apply_damage(element)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.WATER:
+			apply_damage(element)
 			return CityStatus.FLOODED
+		GLOBALS.Element_type.AIR:
+			apply_damage(element)
+			return CityStatus.NATURAL
 		GLOBALS.Element_type.PLUAGE:
+			apply_damage(element, 2.0, 2.0)
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.LIGHTNING:
+			apply_damage(element, 2.0, 1.0)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.RADIATION:
-			return CityStatus.IRRADIATED
+			apply_damage(element)
+			return city_status
 		_:
 			return city_status
 			
 func impactFlooded(element) -> CityStatus:
-	apply_damage(element)
 	match element:
 		GLOBALS.Element_type.FIRE:
+			apply_damage(element)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.WATER:
+			apply_damage(element)
 			return CityStatus.FLOODED
 		GLOBALS.Element_type.PLUAGE:
+			apply_damage(element, 2.0, 2.0)
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.RADIATION:
-			return CityStatus.IRRADIATED
+			apply_damage(element)
+			return city_status
 		GLOBALS.Element_type.LIGHTNING:
+			apply_damage(element, 2.0, 2.0)
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
 			return city_status
 		_:
 			return city_status
 			
 func impactCarantined(element) -> CityStatus:
-	apply_damage(element)
 	match element:
 		GLOBALS.Element_type.FIRE:
+			apply_damage(element, 0.5, 0.5)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.WATER:
+			apply_damage(element)
 			return CityStatus.FLOODED
+		GLOBALS.Element_type.AIR:
+			apply_damage(element)
+			Player.handle_plague_spread(location)
+			return city_status
 		GLOBALS.Element_type.PLUAGE:
+			apply_damage(element, 0.5, 0.5)
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.RADIATION:
+			apply_damage(GLOBALS.Element_type.PLUAGE, 3.0, 3.0)
 			return CityStatus.IRRADIATED
 		_:
 			return city_status
@@ -233,6 +253,8 @@ func cityImpact(city_status, impacting_element) -> CityStatus:
 	match city_status:
 		CityStatus.NATURAL:
 			return impactNatural(impacting_element)
+		CityStatus.FOG:
+			return impactFog(impacting_element)
 		CityStatus.FIRES:
 			return impactFires(impacting_element)
 		CityStatus.FLOODED:
@@ -248,6 +270,7 @@ func cityImpact(city_status, impacting_element) -> CityStatus:
 			
 func handle_eruption() -> void:
 	just_impacted = true
+	apply_damage(GLOBALS.Element_type.FIRE, 2.0, 2.0)
 	match city_status:
 		CityStatus.FLOODED:
 			pass

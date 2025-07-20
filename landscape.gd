@@ -12,6 +12,9 @@ var am_i_city = false
 
 var mouse_inside = false
 
+func _ready():
+	$Sprite2D.texture = sprites[type]
+
 func wastes_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting: 
 		GLOBALS.Element_type.WATER:
@@ -63,6 +66,7 @@ func mountain_interaction(impacting) -> GLOBALS.Landscape_type:
 func volcano_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.FIRE: 
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.LIGHTNING)
 			Player.handle_eruption(location)
 		_: pass
 	return GLOBALS.Landscape_type.VOLCANO
@@ -80,6 +84,8 @@ func island_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.FIRE: 
 			return GLOBALS.Landscape_type.VOLCANO
+		GLOBALS.Element_type.WATER: 
+			return GLOBALS.Landscape_type.WATER
 		_: 
 			return GLOBALS.Landscape_type.ISLAND
 			
