@@ -1,21 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://f3mrnpsj47tn"]
+[gd_scene load_steps=11 format=3 uid="uid://f3mrnpsj47tn"]
 
 [ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="1_putuj"]
 [ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="2_xbnss"]
+[ext_resource type="Texture2D" uid="uid://1jn52v6g1upk" path="res://assets/graphics/earth_ele.png" id="3_hpty1"]
+[ext_resource type="Texture2D" uid="uid://cnpcthgyx5xdo" path="res://assets/graphics/fire_ele.png" id="4_pshvr"]
+[ext_resource type="Texture2D" uid="uid://c148pmkkj040j" path="res://assets/graphics/water_ele.png" id="5_vphth"]
+[ext_resource type="Texture2D" uid="uid://84hdkufd4xs2" path="res://assets/graphics/air_ele.png" id="6_roceg"]
+[ext_resource type="Texture2D" uid="uid://dnduwird0qxsl" path="res://assets/graphics/lightning_ele.png" id="7_l3haq"]
+[ext_resource type="Texture2D" uid="uid://bwkxb8f3q73c7" path="res://assets/graphics/plague_ele.png" id="8_1slxc"]
+[ext_resource type="Texture2D" uid="uid://i2dvodi1xm8a" path="res://assets/graphics/steam_ele.png" id="9_w07jt"]
+[ext_resource type="Texture2D" uid="uid://bav7vqwx8q00v" path="res://assets/graphics/radiation_ele.png" id="10_wdoa0"]
 
 [node name="ElementButtons" type="Node2D" node_paths=PackedStringArray("elements")]
 script = ExtResource("1_putuj")
 elements = [NodePath("Fire"), NodePath("Air"), NodePath("Water"), NodePath("Earth"), NodePath("Steam"), NodePath("Plague"), NodePath("Lightning"), NodePath("Radiation")]
 
 [node name="Earth" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 286)
 
 [node name="CheckBox Earth" type="CheckBox" parent="Earth"]
 offset_top = -174.0
 offset_right = 24.0
 offset_bottom = -150.0
 button_group = ExtResource("2_xbnss")
-text = "Earth"
+icon = ExtResource("3_hpty1")
 
 [node name="Earth label" type="Label" parent="Earth"]
 visible = false
@@ -26,14 +34,14 @@ offset_bottom = -152.0
 text = "Earth"
 
 [node name="Fire" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 269)
 
 [node name="CheckBox Fire" type="CheckBox" parent="Fire"]
 offset_top = -202.0
 offset_right = 24.0
 offset_bottom = -178.0
 button_group = ExtResource("2_xbnss")
-text = "Fire"
+icon = ExtResource("4_pshvr")
 
 [node name="Fire label" type="Label" parent="Fire"]
 visible = false
@@ -44,7 +52,7 @@ offset_bottom = -174.0
 text = "===="
 
 [node name="Water" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 243)
 
 [node name="CheckBox Water" type="CheckBox" parent="Water"]
 offset_top = -225.0
@@ -52,7 +60,7 @@ offset_right = 24.0
 offset_bottom = -201.0
 button_pressed = true
 button_group = ExtResource("2_xbnss")
-text = "Water"
+icon = ExtResource("5_vphth")
 
 [node name="Water label" type="Label" parent="Water"]
 visible = false
@@ -63,14 +71,14 @@ offset_bottom = -203.0
 text = "Water"
 
 [node name="Air" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 305)
 
 [node name="CheckBox Air" type="CheckBox" parent="Air"]
 offset_top = -147.0
 offset_right = 24.0
 offset_bottom = -123.0
 button_group = ExtResource("2_xbnss")
-text = "Air"
+icon = ExtResource("6_roceg")
 
 [node name="Air label" type="Label" parent="Air"]
 visible = false
@@ -81,7 +89,7 @@ offset_bottom = -124.0
 text = "Air"
 
 [node name="Lightning" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 321)
 
 [node name="Lightning label" type="Label" parent="Lightning"]
 visible = false
@@ -96,10 +104,10 @@ offset_top = -121.0
 offset_right = 24.0
 offset_bottom = -97.0
 button_group = ExtResource("2_xbnss")
-text = "Lightning"
+icon = ExtResource("7_l3haq")
 
 [node name="Plague" type="Node2D" parent="."]
-position = Vector2(44, 243)
+position = Vector2(85, 344)
 
 [node name="Plauge label" type="Label" parent="Plague"]
 visible = false
@@ -114,37 +122,16 @@ offset_top = -93.0
 offset_right = 24.0
 offset_bottom = -69.0
 button_group = ExtResource("2_xbnss")
-text = "Plauge"
-
-[node name="Radiation" type="Node2D" parent="."]
-position = Vector2(176, 972)
-
-[node name="CheckBox Radiation" type="CheckBox" parent="Radiation"]
-offset_left = -132.0
-offset_top = -793.0
-offset_right = -108.0
-offset_bottom = -769.0
-button_group = ExtResource("2_xbnss")
-text = "Radiation"
-
-[node name="Radiation label" type="Label" parent="Radiation"]
-visible = false
-offset_left = -107.0
-offset_top = -792.0
-offset_right = -33.0
-offset_bottom = -769.0
-text = "Radiation"
+icon = ExtResource("8_1slxc")
 
 [node name="Steam" type="Node2D" parent="."]
-position = Vector2(88, 486)
+position = Vector2(85, 334)
 
 [node name="CheckBox Steam" type="CheckBox" parent="Steam"]
-offset_left = -44.0
-offset_top = -281.0
-offset_right = -20.0
-offset_bottom = -257.0
+offset_right = 78.0
+offset_bottom = 58.0
 button_group = ExtResource("2_xbnss")
-text = "Steam"
+icon = ExtResource("9_w07jt")
 
 [node name="Steam label" type="Label" parent="Steam"]
 visible = false
@@ -161,11 +148,28 @@ offset_right = 177.0
 offset_bottom = 12.0
 text = "Choose your element"
 
+[node name="Radiation" type="Node2D" parent="."]
+position = Vector2(85, 287)
+
+[node name="CheckBox Radiation" type="CheckBox" parent="Radiation"]
+offset_right = 78.0
+offset_bottom = 58.0
+button_group = ExtResource("2_xbnss")
+icon = ExtResource("10_wdoa0")
+
+[node name="Radiation label" type="Label" parent="Radiation"]
+visible = false
+offset_left = -107.0
+offset_top = -792.0
+offset_right = -33.0
+offset_bottom = -769.0
+text = "Radiation"
+
 [connection signal="pressed" from="Earth/CheckBox Earth" to="." method="_on_check_box_pressed" binds= [3]]
 [connection signal="pressed" from="Fire/CheckBox Fire" to="." method="_on_check_box_pressed" binds= [0]]
 [connection signal="pressed" from="Water/CheckBox Water" to="." method="_on_check_box_pressed" binds= [2]]
 [connection signal="pressed" from="Air/CheckBox Air" to="." method="_on_check_box_pressed" binds= [1]]
 [connection signal="pressed" from="Lightning/CheckBox Lightning" to="." method="_on_check_box_pressed" binds= [6]]
 [connection signal="pressed" from="Plague/CheckBox Plauge" to="." method="_on_check_box_pressed" binds= [5]]
-[connection signal="pressed" from="Radiation/CheckBox Radiation" to="." method="_on_check_box_pressed" binds= [7]]
 [connection signal="pressed" from="Steam/CheckBox Steam" to="." method="_on_check_box_pressed" binds= [4]]
+[connection signal="pressed" from="Radiation/CheckBox Radiation" to="." method="_on_check_box_pressed" binds= [7]]
