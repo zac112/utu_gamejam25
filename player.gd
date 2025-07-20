@@ -79,7 +79,7 @@ func neighbours(i):
 	var n_land = []
 	
 	for idx in n_idx:
-		if idx < 0 and idx >= n:
+		if idx < 0 or idx >= n:
 			continue
 			
 		var cell = cells[idx]
