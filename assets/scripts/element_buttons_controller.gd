@@ -29,4 +29,9 @@ func addAvailableElement(element : int) -> void:
 	
 func _on_check_box_pressed(element: int) -> void:
 	Player.selectedElement = (element as GLOBALS.Element_type)
+	$AudioStreamPlayer2D.play()
 	print(Player.selectedElement)
+
+func playSpellSound():
+	print(elements[Player.selectedElement].name+"/AudioStreamPlayer2D")
+	get_node(elements[Player.selectedElement].name+"/AudioStreamPlayer2D").play()
