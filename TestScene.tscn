@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://15775gee50nb"]
+[gd_scene load_steps=10 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://f3mrnpsj47tn" path="res://assets/ElementButtons/element_buttons.tscn" id="3_wicfy"]
-[ext_resource type="Texture2D" uid="uid://b0pmvfbxcckf0" path="res://assets/landscape_assests/island.png" id="4_go42g"]
+[ext_resource type="Texture2D" uid="uid://b5ou7bjveb57p" path="res://assets/blue.png" id="4_12c36"]
 [ext_resource type="Texture2D" uid="uid://d4cmj2lxk881f" path="res://assets/graphics/manaoverlay.png" id="5_sreuk"]
+[ext_resource type="Texture2D" uid="uid://c4t2xy4blmnxi" path="res://assets/graphics/finger.png" id="6_tq6uv"]
+[ext_resource type="Script" uid="uid://dtaf05kwajms2" path="res://assets/scripts/finger.gd" id="7_12c36"]
+
+[sub_resource type="Animation" id="Animation_b3dy1"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxm5d"]
+_data = {
+&"new_animation": SubResource("Animation_b3dy1")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sreuk")
@@ -30,7 +40,7 @@ step = 0.0
 value = 100.0
 fill_mode = 3
 texture_under = ExtResource("1_cguwc")
-texture_progress = ExtResource("4_go42g")
+texture_progress = ExtResource("4_12c36")
 
 [node name="Manaoverlay" type="Sprite2D" parent="TextureProgressBar"]
 position = Vector2(47.441, 49.7591)
@@ -38,3 +48,20 @@ scale = Vector2(1.084, 0.17)
 texture = ExtResource("5_sreuk")
 
 [node name="RadioactiveTimer" type="Timer" parent="."]
+
+[node name="Finger2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(456, -132)
+texture = ExtResource("6_tq6uv")
+script = ExtResource("7_12c36")
+
+[node name="Finger3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(96, -230)
+texture = ExtResource("6_tq6uv")
+script = ExtResource("7_12c36")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rxm5d")
+}

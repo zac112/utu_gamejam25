@@ -1,4 +1,4 @@
-class_name Landscape extends Node2D
+extends Node2D
 
 signal spellOnLandscape
 signal spellCast
