@@ -283,6 +283,7 @@ func changeTexture() -> void:
 	var length = 0.5
 	var tween = get_tree().create_tween()
 	tween.tween_property($CitySprite, "modulate", Color.TRANSPARENT, length)	
+	#tween.tween_property($)
 	await get_tree().create_timer(length).timeout
 	$CitySprite.texture = sprites[city_status]
 	tween = get_tree().create_tween()
