@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://x4m6ahf0whgf"]
 
-[ext_resource type="Script" uid="uid://c65w1cl2y48fo" path="res://assets/lose_screen/button.gd" id="1_dp6yg"]
+[ext_resource type="Script" uid="uid://c65w1cl2y48fo" path="res://assets/win_screen/button.gd" id="1_dp6yg"]
 
 [node name="Lost" type="Control"]
 layout_mode = 3

@@ -31,6 +31,9 @@ func _on_check_box_pressed(element: int) -> void:
 	Player.selectedElement = (element as GLOBALS.Element_type)
 	$AudioStreamPlayer2D.play()
 	print(Player.selectedElement)
+	var finger = $"../Finger2"
+	if finger:
+		finger.queue_free()
 
 func playSpellSound():
 	print(elements[Player.selectedElement].name+"/AudioStreamPlayer2D")

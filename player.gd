@@ -102,6 +102,12 @@ func neighbours(i):
 	return [n_city, n_land]
 
 func simulate_cities():
+	if Player.check_win():
+		get_tree().change_scene_to_file("res://assets/win_screen/won.tscn")
+	
+	if Player.mana <= 0:
+		get_tree().change_scene_to_file("res://assets/lose_screen/lost.tscn")
+		
 	for city in city_references:
 		var old_city_status = city.city_status
 		
@@ -162,3 +168,10 @@ func check_win() -> bool:
 		if city.city_status != City.CityStatus.DESTROYED and city.city_status != City.CityStatus.DEPOPOLULATED:
 			return false
 	return true
+
+func clear():
+	mana = 100
+	cells.clear()
+	city_references.clear()
+	for key in effectiveness.keys():
+		effectiveness[key] = 1.0
