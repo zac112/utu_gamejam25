@@ -61,10 +61,12 @@ func _ready() -> void:
 	$Population.visible = false
 
 func apply_flat_damage(popul : int, struct : int):
+	changeTexture()
 	population -= popul
 	integrity -= struct
 
 func apply_damage(element_type, pop_mult=1.0, int_mult=1.0) -> void:
+	changeTexture()
 	var d_population = Player.populationDamage[element_type] * Player.effectiveness[element_type]
 	var d_integrity = Player.structuralDamage[element_type] * Player.effectiveness[element_type]
 	

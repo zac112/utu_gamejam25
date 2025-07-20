@@ -45,6 +45,9 @@ func swamp_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting:
 		GLOBALS.Element_type.EARTH: 
 			return GLOBALS.Landscape_type.WASTE
+		GLOBALS.Element_type.FIRE: 
+			Player.availabeElements.get_or_add(GLOBALS.Element_type.PLUAGE)
+			return GLOBALS.Landscape_type.SWAMP
 		GLOBALS.Element_type.WATER: 
 			return GLOBALS.Landscape_type.WATER
 		_: 
@@ -125,13 +128,20 @@ func changeTexture() -> void:
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			type = landscape_interaction(type, Player.selectedElement)			
-			changeTexture()
+			var new_type = landscape_interaction(type, Player.selectedElement)			
+			
+			if new_type != type:
+				type = new_type
+				Player.mana -= 1
+				spellOnLandscape.emit()
+				changeTexture()
+				
+			
 			Player.time += 1
-			Player.mana -= 1
 			Player.simulate_cities()
-
-			spellOnLandscape.emit()
+			
+			
+			
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true
