@@ -161,7 +161,12 @@ func _input(event):
 				
 			Player.time += 1
 			Player.simulate_cities()
-
+			
+			
+	
+func doRadioactive():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color.GREEN, 10)	
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://15775gee50nb"]
+[gd_scene load_steps=6 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
 [ext_resource type="Script" uid="uid://c8km3ppepqkry" path="res://test_scene.gd" id="1_sreuk"]
@@ -36,3 +36,5 @@ texture_progress = ExtResource("4_go42g")
 position = Vector2(47.441, 49.7591)
 scale = Vector2(1.084, 0.17)
 texture = ExtResource("5_sreuk")
+
+[node name="RadioactiveTimer" type="Timer" parent="."]

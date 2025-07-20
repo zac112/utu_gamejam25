@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://das7b8u7m8c6m"]
+[gd_scene load_steps=12 format=3 uid="uid://btt3m5imis58c"]
 
 [ext_resource type="Script" uid="uid://uyyp43ho63do" path="res://landscape.gd" id="1_j1j1h"]
 [ext_resource type="Texture2D" uid="uid://bofqi0sy51jmt" path="res://assets/graphics/wasteland.png" id="2_tsij1"]

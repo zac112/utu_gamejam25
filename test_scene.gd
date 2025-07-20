@@ -77,7 +77,8 @@ var landscape_map = [
 func _ready() -> void:
 	var landscape = load("res://landscape.tscn")
 	var city = load("res://city.tscn")
-	
+	$RadioactiveTimer.wait_time = randi_range(60,80)
+	$RadioactiveTimer.start()
 	Player.field_width = width
 	
 	var loc = 0
@@ -100,6 +101,8 @@ func _ready() -> void:
 					instance.type = landscape_map[xy2i(i, j)]
 				Player.cells.append(instance)
 				add_child(instance)
+				if loc == 48:
+					$RadioactiveTimer.timeout.connect(instance.doRadioactive)
 				
 				instance.spellOnLandscape.connect(spellOnLandscape)
 			loc += 1
