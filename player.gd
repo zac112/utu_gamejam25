@@ -110,7 +110,7 @@ func simulate_cities():
 			city.city_status = City.CityStatus.DEPOPOLULATED
 		if city.integrity <= 0:
 			city.city_status = City.CityStatus.DESTROYED
-		print("city", city.population, city.integrity , ": ", city.serializeCityStatus(city.city_status))
+		print("city(", city.population,", " ,city.integrity , "): ", city.serializeCityStatus(city.city_status))
 		if old_city_status != city.city_status:
 			city.changeTexture()
 	print("---tick simulation---")

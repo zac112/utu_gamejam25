@@ -171,7 +171,7 @@ func impactFog(element) -> CityStatus:
 			apply_damage(element, 2.0, 2.0)
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.LIGHTNING:
-			apply_damage(element, 2.0, 1.0)
+			apply_damage(element, 10.0, 1.0)
 			return CityStatus.FIRES
 		GLOBALS.Element_type.RADIATION:
 			apply_damage(element)
@@ -198,7 +198,7 @@ func impactFlooded(element) -> CityStatus:
 			just_impacted = false
 			return city_status
 		GLOBALS.Element_type.LIGHTNING:
-			apply_damage(element, 2.0, 2.0)
+			apply_damage(element, 10.0, 1.0)
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
 			just_impacted = false
 			return city_status
