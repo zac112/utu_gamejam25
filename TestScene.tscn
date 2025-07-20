@@ -1,4 +1,3 @@
-
 [gd_scene load_steps=5 format=3 uid="uid://dudckr3yrl10b"]
 
 [ext_resource type="Texture2D" uid="uid://g1y70b81tueq" path="res://assets/blank.png" id="1_cguwc"]
@@ -18,7 +17,7 @@ scale = Vector2(11.32, 11.32)
 texture = ExtResource("1_cguwc")
 
 [node name="ElementButtons" parent="." instance=ExtResource("3_wicfy")]
-position = Vector2(318, -94)
+position = Vector2(318, -199)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_left = 258.0
