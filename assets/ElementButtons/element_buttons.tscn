@@ -1,15 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://f3mrnpsj47tn"]
+[gd_scene load_steps=20 format=3 uid="uid://f3mrnpsj47tn"]
 
 [ext_resource type="Script" uid="uid://bb0y37wiqmr2h" path="res://assets/scripts/element_buttons_controller.gd" id="1_putuj"]
 [ext_resource type="ButtonGroup" uid="uid://b2ah0s3vpcwo8" path="res://new_button_group.tres" id="2_xbnss"]
 [ext_resource type="Texture2D" uid="uid://1jn52v6g1upk" path="res://assets/graphics/earth_ele.png" id="3_hpty1"]
+[ext_resource type="AudioStream" uid="uid://qanq5isn02p0" path="res://assets/sfx/062864_ese-24142.mp3" id="4_d83tw"]
 [ext_resource type="Texture2D" uid="uid://cnpcthgyx5xdo" path="res://assets/graphics/fire_ele.png" id="4_pshvr"]
 [ext_resource type="Texture2D" uid="uid://c148pmkkj040j" path="res://assets/graphics/water_ele.png" id="5_vphth"]
+[ext_resource type="AudioStream" uid="uid://l1tdadgtcniu" path="res://assets/sfx/explosion-fx-343683.mp3" id="6_2no8v"]
 [ext_resource type="Texture2D" uid="uid://84hdkufd4xs2" path="res://assets/graphics/air_ele.png" id="6_roceg"]
 [ext_resource type="Texture2D" uid="uid://dnduwird0qxsl" path="res://assets/graphics/lightning_ele.png" id="7_l3haq"]
 [ext_resource type="Texture2D" uid="uid://bwkxb8f3q73c7" path="res://assets/graphics/plague_ele.png" id="8_1slxc"]
+[ext_resource type="AudioStream" uid="uid://7akn832vwvw8" path="res://assets/sfx/086329_drain-glugwav-90559.mp3" id="8_2no8v"]
 [ext_resource type="Texture2D" uid="uid://i2dvodi1xm8a" path="res://assets/graphics/steam_ele.png" id="9_w07jt"]
+[ext_resource type="AudioStream" uid="uid://bh26tc88l7ysy" path="res://assets/sfx/woosh-long-cartoon-370386.mp3" id="10_12en5"]
 [ext_resource type="Texture2D" uid="uid://bav7vqwx8q00v" path="res://assets/graphics/radiation_ele.png" id="10_wdoa0"]
+[ext_resource type="AudioStream" uid="uid://d1xfsqq7e28l7" path="res://assets/sfx/quick-whoosh-358178.mp3" id="11_pshvr"]
+[ext_resource type="AudioStream" uid="uid://buvoxqkpmtjau" path="res://assets/sfx/thunder-strike-wav-321628.mp3" id="12_auh0c"]
+[ext_resource type="AudioStream" uid="uid://wwqlabrviold" path="res://assets/sfx/breath-out-242642.mp3" id="14_5e1fl"]
+[ext_resource type="AudioStream" uid="uid://c3hjpqpx4a6fy" path="res://assets/sfx/soap-bubbles-pop-96873.mp3" id="16_qoojg"]
+[ext_resource type="AudioStream" uid="uid://hc6s1gv7knag" path="res://assets/sfx/radiation_01-96283.mp3" id="18_d2x1b"]
 
 [node name="ElementButtons" type="Node2D" node_paths=PackedStringArray("elements")]
 script = ExtResource("1_putuj")
@@ -33,6 +42,9 @@ offset_right = 67.0
 offset_bottom = -152.0
 text = "Earth"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Earth"]
+stream = ExtResource("4_d83tw")
+
 [node name="Fire" type="Node2D" parent="."]
 position = Vector2(85, 269)
 
@@ -50,6 +62,9 @@ offset_top = -197.0
 offset_right = 65.0
 offset_bottom = -174.0
 text = "===="
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Fire"]
+stream = ExtResource("6_2no8v")
 
 [node name="Water" type="Node2D" parent="."]
 position = Vector2(85, 243)
@@ -70,6 +85,9 @@ offset_right = 77.0
 offset_bottom = -203.0
 text = "Water"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Water"]
+stream = ExtResource("8_2no8v")
+
 [node name="Air" type="Node2D" parent="."]
 position = Vector2(85, 305)
 
@@ -87,6 +105,9 @@ offset_top = -147.0
 offset_right = 67.0
 offset_bottom = -124.0
 text = "Air"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Air"]
+stream = ExtResource("10_12en5")
 
 [node name="Lightning" type="Node2D" parent="."]
 position = Vector2(85, 321)
@@ -106,6 +127,9 @@ offset_bottom = -97.0
 button_group = ExtResource("2_xbnss")
 icon = ExtResource("7_l3haq")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Lightning"]
+stream = ExtResource("12_auh0c")
+
 [node name="Plague" type="Node2D" parent="."]
 position = Vector2(85, 344)
 
@@ -124,6 +148,9 @@ offset_bottom = -69.0
 button_group = ExtResource("2_xbnss")
 icon = ExtResource("8_1slxc")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Plague"]
+stream = ExtResource("14_5e1fl")
+
 [node name="Steam" type="Node2D" parent="."]
 position = Vector2(85, 334)
 
@@ -140,6 +167,9 @@ offset_top = -282.0
 offset_right = 32.0
 offset_bottom = -259.0
 text = "Steam"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Steam"]
+stream = ExtResource("16_qoojg")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 12.0
@@ -164,6 +194,12 @@ offset_top = -792.0
 offset_right = -33.0
 offset_bottom = -769.0
 text = "Radiation"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Radiation"]
+stream = ExtResource("18_d2x1b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_pshvr")
 
 [connection signal="pressed" from="Earth/CheckBox Earth" to="." method="_on_check_box_pressed" binds= [3]]
 [connection signal="pressed" from="Fire/CheckBox Fire" to="." method="_on_check_box_pressed" binds= [0]]

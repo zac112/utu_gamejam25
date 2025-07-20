@@ -1,6 +1,7 @@
 class_name Landscape extends Node2D
 
 signal spellOnLandscape
+signal spellCast
 
 @export var sprites : Array[Texture2D]
 
@@ -151,11 +152,11 @@ func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			var new_type = landscape_interaction(type, Player.selectedElement)			
+			spellOnLandscape.emit()
+			Player.mana -= 1
 			
 			if new_type != type:
 				type = new_type
-				Player.mana -= 1
-				spellOnLandscape.emit()
 				changeTexture()
 				
 			Player.time += 1

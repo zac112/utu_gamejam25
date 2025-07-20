@@ -303,6 +303,8 @@ func _input(event):
 			just_impacted = true
 			Player.time += 1
 			var new_city_status = cityImpact(city_status, Player.selectedElement)
+			Player.mana -= 1
+			spellOnCity.emit()
 			
 			if new_city_status != city_status:
 				city_status = new_city_status
@@ -331,8 +333,6 @@ func changeTexture() -> void:
 	$Integrity.visible = false
 	$Population.visible = false
 	
-	Player.mana -= 1
-	spellOnCity.emit()
 			
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true
