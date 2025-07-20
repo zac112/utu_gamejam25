@@ -13,6 +13,8 @@ var am_i_city = false
 
 var mouse_inside = false
 
+@export var audioClips : Array[AudioStream]
+
 func _ready():
 	$Sprite2D.texture = sprites[type]
 
@@ -69,9 +71,14 @@ func volcano_interaction(impacting) -> GLOBALS.Landscape_type:
 		GLOBALS.Element_type.FIRE: 
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.LIGHTNING)
 			Player.handle_eruption(location)
+			$AudioStreamPlayer2D.stream = audioClips[0]
+			$AudioStreamPlayer2D.play()
+			
 		GLOBALS.Element_type.WATER: 
 			Player.availabeElements.get_or_add(GLOBALS.Element_type.STEAM)
 			Player.handle_eruption(location)
+			$AudioStreamPlayer2D.stream = audioClips[0]
+			$AudioStreamPlayer2D.play()
 		_: pass
 	return GLOBALS.Landscape_type.VOLCANO
 			
