@@ -26,13 +26,17 @@ func _ready() -> void:
 				instance.position = Vector2(100*i, 100*j)
 				add_child(instance)
 				Player.city_references.append(instance)
+				(instance as City).spellOnCity.connect(spellOnLandscape)
 			else:
 				var instance = landscape.instantiate()
 				instance.position = Vector2(100*i, 100*j)
 				add_child(instance)
+				(instance as Landscape).spellOnLandscape.connect(spellOnLandscape)
 			
 	var ui = load("res://assets/ElementButtons/element_buttons.tscn")
 	var instance : Node2D = ui.instantiate()
 	instance.position.x = 400
 	instance.position.y = -180
 	
+func spellOnLandscape():
+	$TextureProgressBar.set_value_no_signal(Player.mana)

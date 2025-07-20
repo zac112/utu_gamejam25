@@ -3,6 +3,8 @@ class_name City extends Node2D
 
 @export var sprites : Array[Texture2D]
 
+signal spellOnCity
+
 enum CityStatus {
 	NATURAL,
 	FIRES,
@@ -252,9 +254,11 @@ func _input(event):
 				$CitySprite.texture = sprites[2]
 			else: 
 				$CitySprite.texture = sprites[0]
-			Player.simulate_cities()
-			
+			Player.simulate_cities()			
 			Player.effectiveness[Player.selectedElement] /= 1.5
+			
+			Player.mana -= 1
+			spellOnCity.emit()
 			
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true

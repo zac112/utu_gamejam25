@@ -1,5 +1,7 @@
 class_name Landscape extends Node2D
 
+signal spellOnLandscape
+
 # enum Landscape_type {WASTE = 0, PLANE, FOREST, SWAMP, MOUNTAIN, ISLAND}
 @export var sprites : Array[Texture2D]
 
@@ -85,7 +87,10 @@ func _input(event):
 			type = landscape_interaction(type, Player.selectedElement)			
 			changeTexture()
 			Player.time += 1
+			Player.mana -= 1
 			Player.simulate_cities()
+			
+			spellOnLandscape.emit()
 			
 			
 		
