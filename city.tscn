@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk5gfxijqpkx6"]
+[gd_scene load_steps=9 format=3 uid="uid://e10rud4vctg3"]
 
 [ext_resource type="Script" uid="uid://dyduxycasxnvh" path="res://city.gd" id="1_o3tkm"]
 [ext_resource type="Texture2D" uid="uid://cjynk07or4d2f" path="res://assets/graphics/city.png" id="2_m7k8b"]

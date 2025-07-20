@@ -36,3 +36,5 @@ texture_progress = ExtResource("4_go42g")
 position = Vector2(47.441, 49.7591)
 scale = Vector2(1.084, 0.17)
 texture = ExtResource("5_sreuk")
+
+[node name="RadioactiveTimer" type="Timer" parent="."]
