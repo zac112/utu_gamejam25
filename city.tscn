@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk5gfxijqpkx6"]
+[gd_scene load_steps=6 format=3 uid="uid://e10rud4vctg3"]
 
 [ext_resource type="Script" uid="uid://dyduxycasxnvh" path="res://city.gd" id="1_o3tkm"]
 [ext_resource type="Texture2D" uid="uid://cjynk07or4d2f" path="res://assets/graphics/city.png" id="2_m7k8b"]
 [ext_resource type="Texture2D" uid="uid://dm88b3nifsild" path="res://assets/graphics/city_destroyed.png" id="3_o3tkm"]
+[ext_resource type="Texture2D" uid="uid://cvy0tylj6mb5j" path="res://assets/graphics/city_depopulated.png" id="4_wglf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3tkm"]
 size = Vector2(96, 99)
 
 [node name="City" type="Node2D"]
 script = ExtResource("1_o3tkm")
-sprites = Array[Texture2D]([ExtResource("2_m7k8b"), ExtResource("3_o3tkm")])
+sprites = Array[Texture2D]([ExtResource("2_m7k8b"), ExtResource("3_o3tkm"), ExtResource("4_wglf0")])
 
 [node name="CitySprite" type="Sprite2D" parent="."]
 z_index = -1

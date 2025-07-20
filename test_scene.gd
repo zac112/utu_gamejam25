@@ -2,7 +2,7 @@ class_name Main extends Node2D
 
 const width = 7
 const height = 7
-const startX = -3
+const startX = -4
 const startY = -3
 
 func xy2i(x, y):

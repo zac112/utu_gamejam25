@@ -6,11 +6,7 @@ class_name Landscape extends Node2D
 var type = GLOBALS.Landscape_type.WASTE
 
 var mouse_inside = false
-
-func _process(_delta: float) -> void:
-	$Sprite2D.texture = sprites[type]
 	
-
 func wastes_interaction(impacting) -> GLOBALS.Landscape_type:
 	match impacting: 
 		GLOBALS.Element_type.WATER:
@@ -71,12 +67,23 @@ func landscape_interaction(impacted, impacting) -> GLOBALS.Landscape_type:
 			push_error("Invalid impacting element.")
 			return GLOBALS.Landscape_type.WASTE
 
-
+func changeTexture() -> void:
+	var length = 0.5
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color.TRANSPARENT, length)	
+	await get_tree().create_timer(length).timeout
+	$Sprite2D.texture = sprites[type]
+	tween = get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color.WHITE, length)
+	print("After timeout")
+	
+	
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and mouse_inside: 
 		#print(event.position	)
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			type = landscape_interaction(type, Player.selectedElement)
+			type = landscape_interaction(type, Player.selectedElement)			
+			changeTexture()
 			Player.time += 1
 			Player.simulate_cities()
 			

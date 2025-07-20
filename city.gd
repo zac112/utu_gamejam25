@@ -246,8 +246,10 @@ func _input(event):
 			$Integrity.value = integrity
 			$Population.value = population
 			
-			if city_status == CityStatus.DESTROYED or city_status == CityStatus.DEPOPOLULATED: 
+			if city_status == CityStatus.DESTROYED: 
 				$CitySprite.texture = sprites[1]
+			elif city_status == CityStatus.DEPOPOLULATED:
+				$CitySprite.texture = sprites[2]
 			else: 
 				$CitySprite.texture = sprites[0]
 			Player.simulate_cities()

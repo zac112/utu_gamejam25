@@ -15,8 +15,10 @@ offset_top = -174.0
 offset_right = 24.0
 offset_bottom = -150.0
 button_group = ExtResource("2_xbnss")
+text = "Earth"
 
 [node name="Earth label" type="Label" parent="Earth"]
+visible = false
 offset_left = 25.0
 offset_top = -175.0
 offset_right = 67.0
@@ -31,13 +33,15 @@ offset_top = -202.0
 offset_right = 24.0
 offset_bottom = -178.0
 button_group = ExtResource("2_xbnss")
+text = "Fire"
 
 [node name="Fire label" type="Label" parent="Fire"]
+visible = false
 offset_left = 25.0
-offset_top = -204.0
+offset_top = -197.0
 offset_right = 65.0
-offset_bottom = -181.0
-text = "Fire"
+offset_bottom = -174.0
+text = "===="
 
 [node name="Water" type="Node2D" parent="."]
 position = Vector2(44, 243)
@@ -48,8 +52,10 @@ offset_right = 24.0
 offset_bottom = -201.0
 button_pressed = true
 button_group = ExtResource("2_xbnss")
+text = "Water"
 
 [node name="Water label" type="Label" parent="Water"]
+visible = false
 offset_left = 25.0
 offset_top = -226.0
 offset_right = 77.0
@@ -64,8 +70,10 @@ offset_top = -147.0
 offset_right = 24.0
 offset_bottom = -123.0
 button_group = ExtResource("2_xbnss")
+text = "Air"
 
 [node name="Air label" type="Label" parent="Air"]
+visible = false
 offset_left = 25.0
 offset_top = -147.0
 offset_right = 67.0
@@ -76,6 +84,7 @@ text = "Air"
 position = Vector2(44, 243)
 
 [node name="Lightning label" type="Label" parent="Lightning"]
+visible = false
 offset_left = 25.0
 offset_top = -120.0
 offset_right = 98.0
@@ -87,11 +96,13 @@ offset_top = -121.0
 offset_right = 24.0
 offset_bottom = -97.0
 button_group = ExtResource("2_xbnss")
+text = "Lightning"
 
 [node name="Plague" type="Node2D" parent="."]
 position = Vector2(44, 243)
 
 [node name="Plauge label" type="Label" parent="Plague"]
+visible = false
 offset_left = 25.0
 offset_top = -93.0
 offset_right = 77.0
@@ -103,6 +114,7 @@ offset_top = -93.0
 offset_right = 24.0
 offset_bottom = -69.0
 button_group = ExtResource("2_xbnss")
+text = "Plauge"
 
 [node name="Radiation" type="Node2D" parent="."]
 position = Vector2(176, 972)
@@ -113,8 +125,10 @@ offset_top = -793.0
 offset_right = -108.0
 offset_bottom = -769.0
 button_group = ExtResource("2_xbnss")
+text = "Radiation"
 
 [node name="Radiation label" type="Label" parent="Radiation"]
+visible = false
 offset_left = -107.0
 offset_top = -792.0
 offset_right = -33.0
@@ -130,8 +144,10 @@ offset_top = -281.0
 offset_right = -20.0
 offset_bottom = -257.0
 button_group = ExtResource("2_xbnss")
+text = "Steam"
 
 [node name="Steam label" type="Label" parent="Steam"]
+visible = false
 offset_left = -17.0
 offset_top = -282.0
 offset_right = 32.0
