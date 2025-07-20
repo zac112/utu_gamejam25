@@ -96,8 +96,8 @@ func city_idle_tick():
 			if randi() % 4 == 0:
 				city_status = CityStatus.NATURAL
 		CityStatus.UNREST:
-			apply_flat_damage(randi()%10, randi()%10)
-			var i = randi() % 5
+			apply_flat_damage(12, 12)
+			var i = randi() % 10
 			if i == 0:
 				city_status = CityStatus.NATURAL
 			elif i == 1:
@@ -106,6 +106,10 @@ func city_idle_tick():
 				pass
 		CityStatus.CARANTINE:
 			apply_flat_damage(randi()%2, 0)
+			if randi()%10 == 0:
+				city_status = CityStatus.UNREST
+				carantime_step = 0
+				return
 			if carantime_step == carantine_max:
 				carantine_max *= 2
 				carantime_step = 0
@@ -221,8 +225,10 @@ func impactCarantined(element) -> CityStatus:
 			just_impacted = false
 			return city_status
 		GLOBALS.Element_type.PLUAGE:
-			apply_damage(element, 0.5, 0.5)
-			return CityStatus.CARANTINE
+			if randi()%10 == 0:
+				return CityStatus.UNREST
+			else:
+				return CityStatus.CARANTINE
 		GLOBALS.Element_type.RADIATION:
 			apply_damage(GLOBALS.Element_type.PLUAGE, 3.0, 3.0)
 			return CityStatus.IRRADIATED
@@ -259,6 +265,16 @@ func impactIrradiated(element) -> CityStatus:
 			return CityStatus.CARANTINE
 		GLOBALS.Element_type.RADIATION:
 			return CityStatus.IRRADIATED
+		_:
+			return city_status
+			
+func impactUnrest(element) -> CityStatus:
+	apply_damage(element)
+	match element:
+		GLOBALS.Element_type.FIRE:
+			return CityStatus.FIRES
+		GLOBALS.Element_type.WATER:
+			return CityStatus.FLOODED
 		_:
 			return city_status
 
