@@ -158,12 +158,8 @@ func _input(event):
 				spellOnLandscape.emit()
 				changeTexture()
 				
-			
 			Player.time += 1
 			Player.simulate_cities()
-			
-			
-			
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_inside = true

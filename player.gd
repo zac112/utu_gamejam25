@@ -56,24 +56,35 @@ var cells = []
 
 var field_width;
 
+func bounded(x, b=7) -> bool:
+	return x >= 0 and x < b
+	
+
 func neighbours(i):
 	var x = i%field_width
 	var y = i/field_width
 	
 	var n = cells.size();
 	
-	var n_idx = [
-		(x - 1) + (y - 1) * field_width,
-		(x - 1) + y * field_width,
-		(x - 1) + (y + 1) * field_width,
+	var n_idx = []
+	if bounded(x - 1) and bounded(y - 1):
+		n_idx.append((x - 1) + (y - 1) * field_width)
+	if bounded(x - 1) and bounded(y):
+		n_idx.append((x - 1) + y * field_width)
+	if bounded(x - 1) and bounded(y + 1):
+		n_idx.append((x - 1) + (y + 1) * field_width)
 		
-		(x + 1) + (y - 1) * field_width,
-		(x + 1) + y * field_width,
-		(x + 1) + (y + 1) * field_width,
+	if bounded(x + 1) and bounded(y - 1):
+		n_idx.append((x + 1) + (y - 1) * field_width)
+	if bounded(x + 1) and bounded(y):
+		n_idx.append((x + 1) + y * field_width)
+	if bounded(x + 1) and bounded(y + 1):
+		n_idx.append((x + 1) + (y + 1) * field_width)
 		
-		x + (y - 1) * field_width,
-		x + (y + 1) * field_width,
-	]
+	if bounded(x) and bounded(y - 1):
+		n_idx.append(x + (y - 1) * field_width)
+	if bounded(x) and bounded(y + 1):
+		n_idx.append(x + (y + 1) * field_width)	
 	
 	var n_city = []
 	var n_land = []

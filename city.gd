@@ -313,11 +313,9 @@ func _input(event):
 			$Population.value = population
 			
 			Player.simulate_cities()
-			Player.effectiveness[Player.selectedElement] /= 1.5
-			
-			
-			
-			
+			if city_status != CityStatus.DESTROYED and city_status != CityStatus.DEPOPOLULATED:
+				Player.effectiveness[Player.selectedElement] /= 1.5
+				
 func changeTexture() -> void:
 	var length = 0.5
 	var tween = get_tree().create_tween()
